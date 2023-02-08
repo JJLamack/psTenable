@@ -1,4 +1,4 @@
-function Invoke-TenableMethod {
+function Invoke-TenableSCMethod {
     <#
     
     .SYNOPSIS
@@ -11,11 +11,21 @@ function Invoke-TenableMethod {
 
     The API URI resource to call, this function will add http(s)://host and /rest as needed
 
+    .PARAMETER Id
+
+    Filters operations based on the ID or name
+
     #>
     [Alias('itm')]
     param (
         [Parameter(Position=0)]
         $Resource,
+
+        [String]
+        [Alias('Name','UUID')]
+        $Id,
+
+        $Field,
 
         [Microsoft.PowerShell.Commands.WebRequestMethod]
         $Method = 'GET',
@@ -42,9 +52,23 @@ function Invoke-TenableMethod {
                 $uri += "/rest/$r"
             }
 
+            # add ID to URI if it exists and is a GET request
+            if($Id -and $Method -eq 'GET') {
+                $uri += "/$Id"
+            }
+
+            # Add Fields to URI if exists
+            if($Field) {
+                $uri += "?fields="
+                foreach ($f in $Field) {
+                    $uri += "$f,"
+                }
+                $uri = $uri -replace ',$',''
+            }
+
             try {
                 $result = Invoke-RestMethod @restParams -Uri $uri
-                return $result
+                return $result.Response
             }
             catch {
                 if ($_.Exception.Response.StatusCode -eq 401) {
