@@ -28,6 +28,6 @@ function Get-TenableSCRepository {
         } else {
             $result = Invoke-TenableSCMethod -Resource "repository" -Field $fields
         }
-        $result
+        return $result
     }
 }

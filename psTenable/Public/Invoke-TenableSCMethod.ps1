@@ -27,6 +27,8 @@ function Invoke-TenableSCMethod {
 
         $Field,
 
+        $PSType,
+
         [Microsoft.PowerShell.Commands.WebRequestMethod]
         $Method = 'GET',
         $TenableUrl = $env:TenableUrl,
@@ -68,13 +70,16 @@ function Invoke-TenableSCMethod {
 
             try {
                 $result = Invoke-RestMethod @restParams -Uri $uri
+                if ($PSType) {foreach ($r in $result.response) {
+                    $r.pstypeNames.add($PSType)
+                }}
                 return $result.Response
             }
             catch {
                 if ($_.Exception.Response.StatusCode -eq 401) {
                     Write-Error "Unauthorized error returned from $uri, please verify API Key and try again"
                 } elseif ($_.Exception.Response.StatusCode -eq 403) {
-                    Write-Error "Unauthorized error returned from $uri, please verify API Key and try again"
+                    Write-Error "Unauthorized error returned from $uri, please verify API Key is correct, has access then try again"
                 } else {
                     Write-Error "Error calling $uri $($_.Exception.Message) StatusCode: $($_.Exception.Response)"
                 }
