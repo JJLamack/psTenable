@@ -2,6 +2,7 @@
 <Configuration>
     <ViewDefinitions>
         <View>
+            <Name>TenableSCOrganization</Name>
             <ViewSelectedBy>
                 <TypeName>TenableSCOrganization</TypeName>
             </ViewSelectedBy>
