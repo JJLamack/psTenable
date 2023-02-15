@@ -7,8 +7,8 @@ A PowerShell Module to interface with the different Tenable API's.
 psTenable
 |
 | -> psTenable - Powershell Module Source Files
-| -> module-docs-website - Website source to show module documentation
-| -> tests - house Pester test functions
+| -> docusaurus - Website source to show module documentation
+| -> Tests - house Pester test functions
 
 ## Inspired By
 

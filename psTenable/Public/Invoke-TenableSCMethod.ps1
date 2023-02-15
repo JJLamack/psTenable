@@ -70,9 +70,11 @@ function Invoke-TenableSCMethod {
 
             try {
                 $result = Invoke-RestMethod @restParams -Uri $uri
-                if ($PSType) {foreach ($r in $result.response) {
-                    $r.pstypeNames.add($PSType)
-                }}
+                if ($PSType) {
+                    foreach ($r in $result.response) {
+                        $r.pstypeNames.add($PSType)
+                    }
+                }
                 return $result.Response
             }
             catch {
