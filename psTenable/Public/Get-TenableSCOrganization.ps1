@@ -11,7 +11,7 @@ function Get-TenableSCOrganization {
 
     .PARAMETER Field
 
-    filters results returned based on the field
+    Filters results returned based on the field. Default displays all properities that can be returned from the Organization API endpoint except for those that can be quiered from other endpoints.
 
     #>
     param (

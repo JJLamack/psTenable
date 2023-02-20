@@ -17,6 +17,22 @@
                     </PropertySet>
                 </Members>
             </MemberSet>
+            <ScriptProperty>
+                <Name>createdTime</Name>
+                <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.createdTime)</GetScriptBlock>
+            </ScriptProperty>
+            <ScriptProperty>
+                <Name>modifiedTime</Name>
+                <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.modifiedTime)</GetScriptBlock>
+            </ScriptProperty>
+            <ScriptProperty>
+                <Name>passwordExpires</Name>
+                <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.passwordExpires)</GetScriptBlock>
+            </ScriptProperty>
+            <ScriptProperty>
+                <Name>passwordExpiration</Name>
+                <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.passwordExpiration)</GetScriptBlock>
+            </ScriptProperty>
             <ScriptMethod>
                 <Name>Repositories</Name>
                 <Script>Invoke-TenableSCMethod -Resource repository</Script>
