@@ -15,6 +15,16 @@ function Invoke-TenableSCMethod {
 
     Filters operations based on the ID or name
 
+    .PARAMETER Field
+
+    filters results returned based on the field
+
+    .PARAMETER PSType
+
+    .PARAMETER Method
+
+    default "GET". Web request methods
+
     #>
     [Alias('itm')]
     param (

@@ -25,6 +25,18 @@
                 <Name>Zones</Name>
                 <Script>Invoke-TenableSCMethod -Resource zone</Script>
             </ScriptMethod>
+            <ScriptMethod>
+                <Name>Lces</Name>
+                <Script>Invoke-TenableSCMethod -Resource lce</Script>
+            </ScriptMethod>
+            <ScriptMethod>
+                <Name>LDAPs</Name>
+                <Script>Invoke-TenableSCMethod -Resource ldap</Script>
+            </ScriptMethod>
+            <ScriptMethod>
+                <Name>pubSites</Name>
+                <Script>Invoke-TenableSCMethod -Resource pubSite</Script>
+            </ScriptMethod>
         </Members>
     </Type>
 </Types>
