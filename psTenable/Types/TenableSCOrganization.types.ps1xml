@@ -18,41 +18,17 @@
                 </Members>
             </MemberSet>
             <ScriptProperty>
-                <Name>createdTime</Name>
+                <Name>createdDate</Name>
                 <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.createdTime)</GetScriptBlock>
             </ScriptProperty>
             <ScriptProperty>
-                <Name>modifiedTime</Name>
+                <Name>modifiedDate</Name>
                 <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.modifiedTime)</GetScriptBlock>
             </ScriptProperty>
             <ScriptProperty>
-                <Name>passwordExpires</Name>
-                <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.passwordExpires)</GetScriptBlock>
-            </ScriptProperty>
-            <ScriptProperty>
-                <Name>passwordExpiration</Name>
+                <Name>passwordExpirationDate</Name>
                 <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.passwordExpiration)</GetScriptBlock>
             </ScriptProperty>
-            <ScriptMethod>
-                <Name>Repositories</Name>
-                <Script>Invoke-TenableSCMethod -Resource repository</Script>
-            </ScriptMethod>
-            <ScriptMethod>
-                <Name>Zones</Name>
-                <Script>Invoke-TenableSCMethod -Resource zone</Script>
-            </ScriptMethod>
-            <ScriptMethod>
-                <Name>Lces</Name>
-                <Script>Invoke-TenableSCMethod -Resource lce</Script>
-            </ScriptMethod>
-            <ScriptMethod>
-                <Name>LDAPs</Name>
-                <Script>Invoke-TenableSCMethod -Resource ldap</Script>
-            </ScriptMethod>
-            <ScriptMethod>
-                <Name>pubSites</Name>
-                <Script>Invoke-TenableSCMethod -Resource pubSite</Script>
-            </ScriptMethod>
         </Members>
     </Type>
 </Types>

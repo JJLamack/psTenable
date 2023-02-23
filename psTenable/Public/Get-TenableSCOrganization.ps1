@@ -19,8 +19,24 @@ function Get-TenableSCOrganization {
         [Alias('Id', 'UUID')]
         $Organization,
         [Parameter(ParameterSetName = 'Default', Mandatory = $false)]
-        [ValidateSet("id", "uuid", "name", "description", "email", "address", "city", "state", "country", "phone", "fax", "ipInfoLinks", "zoneSelection", "restrictedIPs", "vulnScoreLow", "vulnScoreMedium", "vulnScoreHigh", "vulnScoreCritical", "vulnScoringSystem", "createdTime", "modifiedTime", "passwordExpires", "passwordExpiration", "userCount", "lces", "repositories", "zones", "nessusManagers", "pubSites", "ldaps")]
-        $Field = @("id", "uuid", "name", "description", "email", "address", "city", "state", "country", "phone", "fax", "ipInfoLinks", "zoneSelection", "restrictedIPs", "vulnScoreLow", "vulnScoreMedium", "vulnScoreHigh", "vulnScoreCritical", "vulnScoringSystem", "createdTime", "modifiedTime", "passwordExpires", "passwordExpiration", "userCount", "nessusManagers")
+        [ArgumentCompleter({
+            [OutputType([System.Management.Automation.CompletionResult])]
+            param(
+                [string] $CommandName,
+                [string] $ParameterName,
+                [string] $WordToComplete,
+                [System.Management.Automation.Language.CommandAst] $CommandAst,
+                [System.Collections.IDictionary] $FakeBoundParameters
+            )
+            
+            $CompletionResults = [System.Collections.Generic.List[System.Management.Automation.CompletionResult]]::new()
+            
+            $startValues = "id","uuid","name","description","email","address","city","state","country","phone","fax","ipInfoLinks","zoneSelection","restrictedIPs","vulnScoreLow","vulnScoreMedium","vulnScoreHigh","vulnScoreCritical","vulnScoringSystem","createdTime","modifiedTime","passwordExpires","passwordExpiration","userCount","lces","repositories","zones","nessusManagers","pubSites","ldaps"
+            $possibleValues = $startValues | Where-Object { $_ -like "$WordToComplete*"}
+            $possibleValues | ForEach-Object {$CompletionResults.Add([System.Management.Automation.CompletionResult]::new($_,$_,'ParameterValue',$_))}
+            return $CompletionResults
+        })]
+        $Field
     )
     begin {
         if ($Organization.ID) {
@@ -30,7 +46,7 @@ function Get-TenableSCOrganization {
             $Organization = $Organization.UUID
         }
         $Resource = "organization"
-        $PSType = "TenableSCOrgnaization"
+        $PSType = "TenableSCOrganization"
     }
     process {
         if ($Organization) {
