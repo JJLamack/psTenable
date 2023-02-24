@@ -25,5 +25,4 @@ Update-ModuleManifest -Path ".\psTenable\psTenable.psd1" -TypesToProcess $TypesS
 
 # Cleanup in memory module and move latest copy to powershell directory to Import
 Remove-Module psTenable -ErrorAction SilentlyContinue
-Copy-Item H:\Projects\psTenable\psTenable\ H:\WindowsPowerShell\Modules\ -Force -Recurse
-Import-Module psTenable
+Import-Module .\psTenable

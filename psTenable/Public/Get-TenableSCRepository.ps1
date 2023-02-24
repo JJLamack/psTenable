@@ -19,17 +19,19 @@ function Get-TenableSCRepository {
         $Type = "All"
     )
     begin {
+        $Resource = "repository"
+        $PSType = "TenableSCRepository"
+    }
+    process {
+        # This needs to be in process to handle valuesFromPipeline
         if ($Repository.ID) {
             $Repository = $Repository.Id
         }
         elseif ($Repository.UUID) {
             $Repository = $Repository.UUID
         }
-        $Resource = "repository"
-        $PSType = "TenableSCRepository"
-    }
-    process {
-        if ($Organization) {
+
+        if ($Repository) {
             $result = Invoke-TenableSCMethod -Resource $Resource -Id $Repository -PSType $PSType -Field $Field -Type $Type
         }
         else {

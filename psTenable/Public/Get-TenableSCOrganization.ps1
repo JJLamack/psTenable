@@ -24,16 +24,18 @@ function Get-TenableSCOrganization {
         $Field
     )
     begin {
-        if ($Organization.ID) {
-            $Organization = $Organization.Id
-        }
-        elseif ($Organization.UUID) {
-            $Organization = $Organization.UUID
-        }
         $Resource = "organization"
         $PSType = "TenableSCOrganization"
     }
     process {
+        # This needs to be in process to handle valuesFromPipeline
+        if ($Organization.id) {
+            $Organization = $Organization.id
+        }
+        elseif ($Organization.uuid) {
+            $Organization = $Organization.uuid
+        }
+        
         if ($Organization) {
             $result = Invoke-TenableSCMethod -Resource $Resource -Id $Organization -PSType $PSType -Field $Field
         }
