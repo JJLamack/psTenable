@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Types>
     <Type>
-        <Name>TenableSCRepository</Name>
+        <Name>TenableSCZone</Name>
         <Members>
             <MemberSet>
                 <Name>PSStandardMembers</Name>
@@ -17,6 +17,14 @@
                     </PropertySet>
                 </Members>
             </MemberSet>
+            <ScriptProperty>
+                <Name>createdDate</Name>
+                <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.createdTime)</GetScriptBlock>
+            </ScriptProperty>
+            <ScriptProperty>
+                <Name>modifiedDate</Name>
+                <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.modifiedTime)</GetScriptBlock>
+            </ScriptProperty>
         </Members>
     </Type>
 </Types>
