@@ -21,6 +21,12 @@
                     <TableColumnHeader>
                         <Label>Description</Label>
                     </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Label>dataFormat</Label>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Label>markDelete</Label>
+                    </TableColumnHeader>
                 </TableHeaders>
                 <TableRowEntries>
                     <TableRowEntry>
@@ -37,6 +43,12 @@
                             </TableColumnItem>
                             <TableColumnItem>
                                 <PropertyName>Description</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>dataFormat</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>markDelete</PropertyName>
                             </TableColumnItem>
                         </TableColumnItems>
                     </TableRowEntry>
