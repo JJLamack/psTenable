@@ -17,6 +17,22 @@
                     </PropertySet>
                 </Members>
             </MemberSet>
+            <ScriptProperty>
+                <Name>createdDate</Name>
+                <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.createdTime)</GetScriptBlock>
+            </ScriptProperty>
+            <ScriptProperty>
+                <Name>modifiedDate</Name>
+                <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.modifiedTime)</GetScriptBlock>
+            </ScriptProperty>
+                        <ScriptProperty>
+                <Name>lastSyncDate</Name>
+                <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.lastSyncTime)</GetScriptBlock>
+            </ScriptProperty>
+            <ScriptProperty>
+                <Name>lastVulnUpdateDate</Name>
+                <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.lastVulnUpdate)</GetScriptBlock>
+            </ScriptProperty>
         </Members>
     </Type>
 </Types>

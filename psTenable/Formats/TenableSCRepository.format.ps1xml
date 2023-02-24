@@ -19,10 +19,10 @@
                         <Label>Name</Label>
                     </TableColumnHeader>
                     <TableColumnHeader>
-                        <Label>Description</Label>
+                        <Label>dataFormat</Label>
                     </TableColumnHeader>
                     <TableColumnHeader>
-                        <Label>dataFormat</Label>
+                        <Label>Description</Label>
                     </TableColumnHeader>
                 </TableHeaders>
                 <TableRowEntries>
@@ -39,10 +39,10 @@
                                 <PropertyName>Name</PropertyName>
                             </TableColumnItem>
                             <TableColumnItem>
-                                <PropertyName>Description</PropertyName>
+                                <PropertyName>dataFormat</PropertyName>
                             </TableColumnItem>
                             <TableColumnItem>
-                                <PropertyName>dataFormat</PropertyName>
+                                <PropertyName>Description</PropertyName>
                             </TableColumnItem>
                         </TableColumnItems>
                     </TableRowEntry>
