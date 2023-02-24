@@ -19,6 +19,10 @@ function Invoke-TenableSCMethod {
 
     filters results returned based on the field
 
+    .PARAMETER Type
+
+    filter results based on the Type. Put into Query string
+
     .PARAMETER PSType
 
     .PARAMETER Method
@@ -28,14 +32,16 @@ function Invoke-TenableSCMethod {
     #>
     [Alias('itm')]
     param (
-        [Parameter(Position=0)]
+        [Parameter(Position = 0)]
         $Resource,
 
         [String]
-        [Alias('Name','UUID')]
+        [Alias('Name', 'UUID')]
         $Id,
 
         $Field,
+
+        $Type,
 
         $PSType,
 
@@ -47,36 +53,51 @@ function Invoke-TenableSCMethod {
     )
     begin {
         $restParams = @{
-            Headers = @{'x-apikey' = "accesskey=$AccessKey; secretkey=$SecretKey"; "accept" = "application/json"}
-            Method = $Method
+            Headers = @{'x-apikey' = "accesskey=$AccessKey; secretkey=$SecretKey"; "accept" = "application/json" }
+            Method  = $Method
         }
     }
     process {
         foreach ($r in $Resource) {
             # Remove trailing "/" for uniform joining
-            $uri = $TenableUrl -replace '/$',''
-            $r = $r -replace '^/',''
+            $uri = $TenableUrl -replace '/$', ''
+            $r = $r -replace '^/', ''
 
             # Check if resource contains /rest and add if necessary
             if ($r -match '^rest') {
                 $uri += "/$r"
-            } else {
+            }
+            else {
                 $uri += "/rest/$r"
             }
 
-            # add ID to URI if it exists and is a GET request
-            if($Id -and $Method -eq 'GET') {
-                $uri += "/$Id"
+            # Get Request
+            if ($Method -eq 'GET') {
+                
+                if ($Id) {
+                    $uri += "/$Id"
+                }
+                else {
+                    if ($Type -and $Field) {
+                        $uri += "?type=$Type&fields="
+                    } elseif ($Type) {
+                        $uri += "?type=$Type"
+                    } elseif ($Field) {
+                        $uri += "?fields="
+                    }
+                    # Add Fields to URI if exists
+                    if ($Field) {
+                        foreach ($f in $Field) {
+                            $uri += "$f,"
+                        }
+                        $uri = $uri -replace ',$', ''
+                    }
+                }
+
             }
 
-            # Add Fields to URI if exists
-            if($Field) {
-                $uri += "?fields="
-                foreach ($f in $Field) {
-                    $uri += "$f,"
-                }
-                $uri = $uri -replace ',$',''
-            }
+
+
 
             try {
                 $result = Invoke-RestMethod @restParams -Uri $uri
@@ -90,9 +111,11 @@ function Invoke-TenableSCMethod {
             catch {
                 if ($_.Exception.Response.StatusCode -eq 401) {
                     Write-Error "Unauthorized error returned from $uri, please verify API Key and try again"
-                } elseif ($_.Exception.Response.StatusCode -eq 403) {
+                }
+                elseif ($_.Exception.Response.StatusCode -eq 403) {
                     Write-Error "Unauthorized error returned from $uri, please verify API Key is correct, has access then try again"
-                } else {
+                }
+                else {
                     Write-Error "Error calling $uri $($_.Exception.Message) StatusCode: $($_.Exception.Response)"
                 }
                 throw $_.Exception
