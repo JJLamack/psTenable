@@ -10,7 +10,7 @@ function Get-ScopedFileLocation {
     return $result
 }
 
-# Update Format & Types in psd1
+# Update Module Manifest with latest Types, Formats, Exported Functions, and ScriptsToProcess
 $TypesItems = @(Get-ChildItem -Path .\psTenable\Types -Recurse -Filter "*.types.ps1xml") | Sort-Object Name
 $FormatItems = @(Get-ChildItem -Path .\psTenable\Formats -Recurse -Filter "*.format.ps1xml") | Sort-Object Name
 $PublicItems = @(Get-ChildItem -Path .\psTenable\Public -Recurse -Filter "*.ps1") | Sort-Object Name
