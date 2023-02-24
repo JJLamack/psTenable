@@ -93,13 +93,10 @@ function Invoke-TenableSCMethod {
                         $uri = $uri -replace ',$', ''
                     }
                 }
-
             }
 
-
-
-
             try {
+                Write-Verbose $uri
                 $result = Invoke-RestMethod @restParams -Uri $uri
                 if ($PSType) {
                     foreach ($r in $result.response) {

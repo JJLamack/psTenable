@@ -13,6 +13,8 @@
                             <Name>UUID</Name>
                             <Name>Name</Name>
                             <Name>Description</Name>
+                            <Name>dataFormat</Name>
+                            <Name>markDelete</Name>
                         </ReferencedProperties>
                     </PropertySet>
                 </Members>

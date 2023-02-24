@@ -30,10 +30,10 @@ function Get-TenableSCRepository {
     }
     process {
         if ($Organization) {
-            $result = Invoke-TenableSCMethod -Resource $Resource -Id $Organization -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Resource $Resource -Id $Repository -PSType $PSType -Field $Field -Type $Type
         }
         else {
-            $result = Invoke-TenableSCMethod -Resource $Resource -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Resource $Resource -PSType $PSType -Field $Field -Type $Type
         }
         return $result
     }
