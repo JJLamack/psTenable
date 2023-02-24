@@ -65,6 +65,7 @@ TypesToProcess = 'Types\TenableSCLce.types.ps1xml',
                'Types\TenableSCOrganization.types.ps1xml', 
                'Types\TenableSCPubSite.types.ps1xml', 
                'Types\TenableSCRepository.types.ps1xml', 
+               'Types\TenableSCScanner.types.ps1xml', 
                'Types\TenableSCZone.types.ps1xml'
 
 # Format files (.ps1xml) to be loaded when importing this module
@@ -76,7 +77,7 @@ FormatsToProcess = 'Formats\TenableSCRepository.format.ps1xml'
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 FunctionsToExport = 'Get-TenableSCLce', 'Get-TenableSCLdap', 'Get-TenableSCOrganization', 
                'Get-TenableSCPubSite', 'Get-TenableSCRepository', 
-               'Get-TenableSCZone', 'Invoke-TenableSCMethod'
+               'Get-TenableSCScanner', 'Get-TenableSCZone', 'Invoke-TenableSCMethod'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()
