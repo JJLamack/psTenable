@@ -23,6 +23,15 @@ $PublicBaseNames = $PublicItems.Basename
 
 Update-ModuleManifest -Path ".\psTenable\psTenable.psd1" -TypesToProcess $TypesScopedPath -FormatsToProcess $FormatScopedPath -ScriptsToProcess $UtilityScopedPath -FunctionsToExport $PublicBaseNames
 
+# Create Documentation with Docusaurus
+# Format all documents
+# Run PSScriptAnalyzer
+# Run Pester Tests
+
+# If release 
+#   create version on site
+#   update manifest number (figure out way to auto bump version number based on [Major].[Minor].[Patch] semaphoric versioning)
+
 # Cleanup in memory module and move latest copy to powershell directory to Import
 Remove-Module psTenable -ErrorAction SilentlyContinue
 Import-Module .\psTenable
