@@ -23,6 +23,10 @@ function Invoke-TenableSCMethod {
 
     filter results based on the Type. Put into Query string
 
+    .PARAMETER Filter
+
+    filter results using custom filters defined by each API call
+
     .PARAMETER PSType
 
     .PARAMETER Method
@@ -42,6 +46,8 @@ function Invoke-TenableSCMethod {
         $Field,
 
         $Type,
+
+        $Filter,
 
         $PSType,
 
@@ -78,19 +84,23 @@ function Invoke-TenableSCMethod {
                     $uri += "/$Id"
                 }
                 else {
-                    if ($Type -and $Field) {
-                        $uri += "?type=$Type&fields="
-                    } elseif ($Type) {
-                        $uri += "?type=$Type"
-                    } elseif ($Field) {
-                        $uri += "?fields="
-                    }
-                    # Add Fields to URI if exists
-                    if ($Field) {
-                        foreach ($f in $Field) {
-                            $uri += "$f,"
+                    if ($Type -or $Field -or $Filter) {
+                        $uri += "?"
+                        if ($Type) {
+                            $uri += "type=$Type&"
                         }
-                        $uri = $uri -replace ',$', ''
+                        if ($Filter) {
+                            $uri += "filter=$Filter&"
+                        }
+                        if ($Field) {
+                            $uri += "fields="
+                            foreach ($f in $Field) {
+                                $uri += "$f,"
+                            }
+                            $uri = $uri -replace ',$', ''
+                        }
+                        # Remove trailing &. This occurs if Type or Filter is specified but Field is not 
+                        $uri = $uri -replace '&$', ''
                     }
                 }
             }

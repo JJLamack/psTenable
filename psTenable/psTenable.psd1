@@ -60,7 +60,8 @@ PowerShellVersion = '5.1'
 ScriptsToProcess = 'Utility\Add-ArgumentCompletionsType.utility.ps1'
 
 # Type files (.ps1xml) to be loaded when importing this module
-TypesToProcess = 'Types\TenableSCLce.types.ps1xml', 
+TypesToProcess = 'Types\TenableSCAsset.types.ps1xml', 
+               'Types\TenableSCLce.types.ps1xml', 
                'Types\TenableSCLdap.types.ps1xml', 
                'Types\TenableSCOrganization.types.ps1xml', 
                'Types\TenableSCPubSite.types.ps1xml', 
@@ -77,10 +78,11 @@ FormatsToProcess = 'Formats\TenableSCRepository.format.ps1xml'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'Get-TenableSCLce', 'Get-TenableSCLdap', 'Get-TenableSCOrganization', 
-               'Get-TenableSCPubSite', 'Get-TenableSCRepository', 
-               'Get-TenableSCScanner', 'Get-TenableSCStatus', 'Get-TenableSCUser', 
-               'Get-TenableSCZone', 'Invoke-TenableSCMethod'
+FunctionsToExport = 'Get-TenableSCAsset', 'Get-TenableSCLce', 'Get-TenableSCLdap', 
+               'Get-TenableSCOrganization', 'Get-TenableSCPubSite', 
+               'Get-TenableSCRepository', 'Get-TenableSCScanner', 
+               'Get-TenableSCStatus', 'Get-TenableSCUser', 'Get-TenableSCZone', 
+               'Invoke-TenableSCMethod'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()
