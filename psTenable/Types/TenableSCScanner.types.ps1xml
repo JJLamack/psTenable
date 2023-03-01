@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Types>
     <Type>
-        <Name>TenableSCOrganization</Name>
+        <Name>TenableSCScanner</Name>
         <Members>
             <MemberSet>
                 <Name>PSStandardMembers</Name>
@@ -10,7 +10,7 @@
                         <Name>DefaultDisplayPropertySet</Name>
                         <ReferencedProperties>
                             <Name>Id</Name>
-                            <Name>UUID</Name>
+                            <Name>status</Name>
                             <Name>Name</Name>
                             <Name>Description</Name>
                         </ReferencedProperties>
@@ -24,10 +24,6 @@
             <ScriptProperty>
                 <Name>modifiedDate</Name>
                 <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.modifiedTime)</GetScriptBlock>
-            </ScriptProperty>
-            <ScriptProperty>
-                <Name>passwordExpirationDate</Name>
-                <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.passwordExpiration)</GetScriptBlock>
             </ScriptProperty>
         </Members>
     </Type>

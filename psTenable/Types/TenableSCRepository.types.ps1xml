@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Types>
     <Type>
-        <Name>TenableSCOrganization</Name>
+        <Name>TenableSCRepository</Name>
         <Members>
             <MemberSet>
                 <Name>PSStandardMembers</Name>
@@ -25,9 +25,13 @@
                 <Name>modifiedDate</Name>
                 <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.modifiedTime)</GetScriptBlock>
             </ScriptProperty>
+                        <ScriptProperty>
+                <Name>lastSyncDate</Name>
+                <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.lastSyncTime)</GetScriptBlock>
+            </ScriptProperty>
             <ScriptProperty>
-                <Name>passwordExpirationDate</Name>
-                <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.passwordExpiration)</GetScriptBlock>
+                <Name>lastVulnUpdateDate</Name>
+                <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.lastVulnUpdate)</GetScriptBlock>
             </ScriptProperty>
         </Members>
     </Type>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Types>
+    <Type>
+        <Name>TenableSCStatus</Name>
+        <Members>
+            <MemberSet>
+                <Name>PSStandardMembers</Name>
+                <Members>
+                    <PropertySet>
+                        <Name>DefaultDisplayPropertySet</Name>
+                        <ReferencedProperties>
+                            <Name>jobd</Name>
+                            <Name>licenseStatus</Name>
+                            <Name>activeIPs</Name>
+                            <Name>licensedIPs</Name>
+                        </ReferencedProperties>
+                    </PropertySet>
+                </Members>
+            </MemberSet>
+            <ScriptProperty>
+                <Name>lastDbBackupSuccessDate</Name>
+                <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.lastDbBackupSuccess)</GetScriptBlock>
+            </ScriptProperty>
+        </Members>
+    </Type>
+</Types>
