@@ -25,23 +25,9 @@ function Get-TenableSCStatus {
     )
     begin {
         $Endpoint = "status"
-        $PSType = "TenableSCStatus"
     }
     process {
-        # This needs to be in process to handle valuesFromPipeline
-        if ($Status.id) {
-            $Status = $Status.id
-        }
-        elseif ($Status.uuid) {
-            $Status = $Status.uuid
-        }
-        
-        if ($Status) {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Status -PSType $PSType -Properties $Properties
-        }
-        else {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Properties $Properties
-        }
+        $result = Get-TenableSC -Resource $Endpoint -Properties $Properties -Key $Status
         return $result
     }
 }

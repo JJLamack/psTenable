@@ -25,23 +25,9 @@ function Get-TenableSCPubSite {
     )
     begin {
         $Endpoint = "pubSite"
-        $PSType = "TenableSCPubSite"
     }
     process {
-        # This needs to be in process to handle valuesFromPipeline
-        if ($PubSite.id) {
-            $PubSite = $PubSite.id
-        }
-        elseif ($PubSite.uuid) {
-            $PubSite = $PubSite.uuid
-        }
-        
-        if ($PubSite) {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $PubSite -PSType $PSType -Properties $Properties
-        }
-        else {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Properties $Properties
-        }
+        $result = Get-TenableSC -Resource $Endpoint -Properties $Properties -Key $PubSite
         return $result
     }
 }

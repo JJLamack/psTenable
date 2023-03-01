@@ -25,23 +25,9 @@ function Get-TenableSCOrganization {
     )
     begin {
         $Endpoint = "organization"
-        $PSType = "TenableSCOrganization"
     }
     process {
-        # This needs to be in process to handle valuesFromPipeline
-        if ($Organization.id) {
-            $Organization = $Organization.id
-        }
-        elseif ($Organization.uuid) {
-            $Organization = $Organization.uuid
-        }
-        
-        if ($Organization) {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Organization -PSType $PSType -Properties $Properties
-        }
-        else {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Properties $Properties
-        }
+        $result = Get-TenableSC -Resource $Endpoint -Properties $Properties -Key $Organization
         return $result
     }
 }

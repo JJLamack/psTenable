@@ -25,23 +25,9 @@ function Get-TenableSCScanner {
     )
     begin {
         $Endpoint = "scanner"
-        $PSType = "TenableSCScanner"
     }
     process {
-        # This needs to be in process to handle valuesFromPipeline
-        if ($Scanner.id) {
-            $Scanner = $Scanner.id
-        }
-        elseif ($Scanner.uuid) {
-            $Scanner = $Scanner.uuid
-        }
-        
-        if ($Scanner) {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Scanner -PSType $PSType -Properties $Properties
-        }
-        else {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Properties $Properties
-        }
+        $result = Get-TenableSC -Resource $Endpoint -Properties $Properties -Key $Scanner
         return $result
     }
 }

@@ -25,23 +25,9 @@ function Get-TenableSCLdap {
     )
     begin {
         $Endpoint = "ldap"
-        $PSType = "TenableSCLdap"
     }
     process {
-        # This needs to be in process to handle valuesFromPipeline
-        if ($Ldap.id) {
-            $Ldap = $Ldap.id
-        }
-        elseif ($Ldap.uuid) {
-            $Ldap = $Ldap.uuid
-        }
-        
-        if ($Ldap) {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Ldap -PSType $PSType -Properties $Properties
-        }
-        else {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Properties $Properties
-        }
+        $result = Get-TenableSC -Resource $Endpoint -Properties $Properties -Key $Ldap
         return $result
     }
 }

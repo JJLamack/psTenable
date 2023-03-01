@@ -25,23 +25,9 @@ function Get-TenableSCZone {
     )
     begin {
         $Endpoint = "zone"
-        $PSType = "TenableSCZone"
     }
     process {
-        # This needs to be in process to handle valuesFromPipeline
-        if ($Zone.id) {
-            $Zone = $Zone.id
-        }
-        elseif ($Zone.uuid) {
-            $Zone = $Zone.uuid
-        }
-        
-        if ($Zone) {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Zone -PSType $PSType -Properties $Properties
-        }
-        else {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Properties $Properties
-        }
+        $result = Get-TenableSC -Resource $Endpoint -Properties $Properties -Key $Zone
         return $result
     }
 }

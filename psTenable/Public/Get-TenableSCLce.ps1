@@ -28,20 +28,7 @@ function Get-TenableSCLce {
         $PSType = "TenableSCLce"
     }
     process {
-        # This needs to be in process to handle valuesFromPipeline
-        if ($Lce.id) {
-            $Lce = $Lce.id
-        }
-        elseif ($Lce.uuid) {
-            $Lce = $Lce.uuid
-        }
-        
-        if ($Lce) {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Lce -PSType $PSType -Properties $Properties
-        }
-        else {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Properties $Properties
-        }
+        $result = Get-TenableSC -Resource $Endpoint -Properties $Properties -Key $Lce
         return $result
     }
 }
