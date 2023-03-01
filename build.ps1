@@ -21,9 +21,8 @@ $FormatScopedPath = Get-ScopedFileLocation -Path $FormatItems
 $UtilityScopedPath = Get-ScopedFileLocation -Path $UtilityItems
 $PublicBaseNames = $PublicItems.Basename
 
-Update-ModuleManifest -Path ".\psTenable\psTenable.psd1" -TypesToProcess $TypesScopedPath -FormatsToProcess $FormatScopedPath -ScriptsToProcess $UtilityScopedPath -FunctionsToExport $PublicBaseNames
+Update-ModuleManifest -Path "$((Get-Location).Path)\psTenable\psTenable.psd1" -TypesToProcess $TypesScopedPath -FormatsToProcess $FormatScopedPath -ScriptsToProcess $UtilityScopedPath -FunctionsToExport $PublicBaseNames
 
-# Create Documentation with Docusaurus
 # Format all documents
 # Run PSScriptAnalyzer
 # Run Pester Tests
@@ -34,4 +33,16 @@ Update-ModuleManifest -Path ".\psTenable\psTenable.psd1" -TypesToProcess $TypesS
 
 # Cleanup in memory module and move latest copy to powershell directory to Import
 Remove-Module psTenable -ErrorAction SilentlyContinue
-Import-Module .\psTenable
+Import-Module -Name "$((Get-Location).Path)\psTenable"
+
+# Create Documentation with Docusaurus
+$docparameters = @{
+    Module = "$((Get-Location).Path)\psTenable"
+    DocsFolder = ".\docs"
+    Sidebar = "commands"
+    MetaKeywords = @(
+        "PowerShell"
+        "Documentation"
+    )
+}
+$Null = New-DocusaurusHelp @docparameters
