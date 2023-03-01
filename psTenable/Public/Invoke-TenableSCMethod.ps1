@@ -7,9 +7,9 @@ function Invoke-TenableSCMethod {
 
     .DESCRIPTION
 
-    .PARAMETER Resource
+    .PARAMETER Endpoint
 
-    The API URI resource to call, this function will add http(s)://host and /rest as needed
+    The API URI Endpoint to call, this function will add http(s)://host and /rest to the URI as needed
 
     .PARAMETER Id
 
@@ -39,7 +39,7 @@ function Invoke-TenableSCMethod {
     [Alias('itm')]
     param (
         [Parameter(Position = 0)]
-        $Resource,
+        $Endpoint,
 
         [String]
         [Alias('Name', 'UUID')]
@@ -66,20 +66,20 @@ function Invoke-TenableSCMethod {
         }
     }
     process {
-        foreach ($r in $Resource) {
+        foreach ($EndpointItem in $Endpoint) {
             # Remove trailing "/" for uniform joining
             $uri = $TenableUrl -replace '/$', ''
-            $r = $r -replace '^/', ''
+            $EndpointItem = $EndpointItem -replace '^/', ''
 
             # Check if resource contains /rest and add if necessary
-            if ($r -match '^rest') {
-                $uri += "/$r"
+            if ($EndpointItem -match '^rest') {
+                $uri += "/$EndpointItem"
             }
             else {
-                $uri += "/rest/$r"
+                $uri += "/rest/$EndpointItem"
             }
 
-            # Get Request
+            # Get Request query items
             if ($Method -eq 'GET') {
                 
                 if ($Id) {

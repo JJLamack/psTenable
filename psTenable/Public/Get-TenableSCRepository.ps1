@@ -19,7 +19,7 @@ function Get-TenableSCRepository {
         $Type = "All"
     )
     begin {
-        $Resource = "repository"
+        $Endpoint = "repository"
         $PSType = "TenableSCRepository"
     }
     process {
@@ -32,10 +32,10 @@ function Get-TenableSCRepository {
         }
 
         if ($Repository) {
-            $result = Invoke-TenableSCMethod -Resource $Resource -Id $Repository -PSType $PSType -Field $Field -Type $Type
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Repository -PSType $PSType -Field $Field -Type $Type
         }
         else {
-            $result = Invoke-TenableSCMethod -Resource $Resource -PSType $PSType -Field $Field -Type $Type
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Field $Field -Type $Type
         }
         return $result
     }

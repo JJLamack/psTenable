@@ -24,7 +24,7 @@ function Get-TenableSCLce {
         $Field
     )
     begin {
-        $Resource = "lce"
+        $Endpoint = "lce"
         $PSType = "TenableSCLce"
     }
     process {
@@ -37,10 +37,10 @@ function Get-TenableSCLce {
         }
         
         if ($Lce) {
-            $result = Invoke-TenableSCMethod -Resource $Resource -Id $Lce -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Lce -PSType $PSType -Field $Field
         }
         else {
-            $result = Invoke-TenableSCMethod -Resource $Resource -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Field $Field
         }
         return $result
     }

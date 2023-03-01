@@ -24,7 +24,7 @@ function Get-TenableSCPubSite {
         $Field
     )
     begin {
-        $Resource = "pubSite"
+        $Endpoint = "pubSite"
         $PSType = "TenableSCPubSite"
     }
     process {
@@ -37,10 +37,10 @@ function Get-TenableSCPubSite {
         }
         
         if ($PubSite) {
-            $result = Invoke-TenableSCMethod -Resource $Resource -Id $PubSite -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $PubSite -PSType $PSType -Field $Field
         }
         else {
-            $result = Invoke-TenableSCMethod -Resource $Resource -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Field $Field
         }
         return $result
     }

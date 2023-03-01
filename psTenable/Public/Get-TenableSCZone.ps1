@@ -24,7 +24,7 @@ function Get-TenableSCZone {
         $Field
     )
     begin {
-        $Resource = "zone"
+        $Endpoint = "zone"
         $PSType = "TenableSCZone"
     }
     process {
@@ -37,10 +37,10 @@ function Get-TenableSCZone {
         }
         
         if ($Zone) {
-            $result = Invoke-TenableSCMethod -Resource $Resource -Id $Zone -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Zone -PSType $PSType -Field $Field
         }
         else {
-            $result = Invoke-TenableSCMethod -Resource $Resource -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Field $Field
         }
         return $result
     }

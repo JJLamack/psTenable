@@ -24,7 +24,7 @@ function Get-TenableSCStatus {
         $Field
     )
     begin {
-        $Resource = "status"
+        $Endpoint = "status"
         $PSType = "TenableSCStatus"
     }
     process {
@@ -37,10 +37,10 @@ function Get-TenableSCStatus {
         }
         
         if ($Status) {
-            $result = Invoke-TenableSCMethod -Resource $Resource -Id $Status -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Status -PSType $PSType -Field $Field
         }
         else {
-            $result = Invoke-TenableSCMethod -Resource $Resource -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Field $Field
         }
         return $result
     }
