@@ -38,7 +38,7 @@ Import-Module -Name "$((Get-Location).Path)\psTenable"
 # Create Documentation with Docusaurus
 $docparameters = @{
     Module = "$((Get-Location).Path)\psTenable"
-    DocsFolder = ".\docs"
+    DocsFolder = ".\website\docs"
     Sidebar = "commands"
     MetaKeywords = @(
         "PowerShell"
