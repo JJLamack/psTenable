@@ -1,3 +1,19 @@
+<#
+
+.SYNOPSIS
+
+Creates consistant build each time the module needs to be tested during development and release
+
+.NOTES
+
+Must verify necessary modules are installed & updated.
+Format documents?
+Verify module with PSScriptAnalyzer
+Verify Manifest with Test-ModuleManifest
+Run Pester Tests
+
+
+#>
 function Get-ScopedFileLocation {
     param (
         [System.IO.FileInfo[]]
@@ -22,10 +38,6 @@ $UtilityScopedPath = Get-ScopedFileLocation -Path $UtilityItems
 $PublicBaseNames = $PublicItems.Basename
 
 Update-ModuleManifest -Path "$((Get-Location).Path)\psTenable\psTenable.psd1" -TypesToProcess $TypesScopedPath -FormatsToProcess $FormatScopedPath -ScriptsToProcess $UtilityScopedPath -FunctionsToExport $PublicBaseNames
-
-# Format all documents
-# Run PSScriptAnalyzer
-# Run Pester Tests
 
 # If release 
 #   create version on site
