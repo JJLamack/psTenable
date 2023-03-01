@@ -29,6 +29,8 @@ function Invoke-TenableSCMethod {
 
     .PARAMETER PSType
 
+    Provides Powershell Type to bind the results to.
+
     .PARAMETER Method
 
     default "GET". Web request methods
