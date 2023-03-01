@@ -9,6 +9,7 @@
  */
 
 module.exports = [
+    'commands/Get-TenableSC',
     'commands/Get-TenableSCAsset',
     'commands/Get-TenableSCLce',
     'commands/Get-TenableSCLdap',

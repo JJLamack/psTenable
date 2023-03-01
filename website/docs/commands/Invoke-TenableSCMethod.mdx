@@ -15,7 +15,7 @@ Handles all common function API Rest calls to Tenable
 ## SYNTAX
 
 ```powershell
-Invoke-TenableSCMethod [[-Resource] <Object>] [-Id <String>] [-Field <Object>] [-Type <Object>]
+Invoke-TenableSCMethod [[-Endpoint] <Object>] [-Id <String>] [-Field <Object>] [-Type <Object>]
  [-Filter <Object>] [-PSType <Object>] [-Method <WebRequestMethod>] [-TenableUrl <Object>]
  [-AccessKey <Object>] [-SecretKey <Object>] [<CommonParameters>]
 ```
@@ -36,9 +36,9 @@ PS C:\> {{ Add example code here }}
 
 ## PARAMETERS
 
-### -Resource
+### -Endpoint
 
-The API URI resource to call, this function will add http(s)://host and /rest as needed
+The API URI Endpoint to call, this function will add http(s)://host and /rest to the URI as needed
 
 ```yaml
 Type: Object

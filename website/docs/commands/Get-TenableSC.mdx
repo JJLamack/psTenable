@@ -1,0 +1,100 @@
+---
+id: Get-TenableSC
+title: Get-TenableSC
+keywords:
+  - PowerShell
+  - Documentation
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Generic "Get a Tenable SC object" call for those that do not need complex handling.
+
+## SYNTAX
+
+```powershell
+Get-TenableSC [-Resource] <Object> [-Field <Object>] [[-Key] <ValidateNotNullOrEmptyAttribute>]
+ [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+Most calls in Tenable SC have a Get-TenableSC\<resource\> command which gets the specifics of that type.
+For many types we can also use this function as most returned items do not need more than a type assignment of the results.
+
+## EXAMPLES
+
+### Example 1
+
+```powershell
+PS C:\> {{ Add example code here }}
+```
+
+{{ Add example description here }}
+
+## PARAMETERS
+
+### -Resource
+
+The type of thing to run a Get request against.
+This will tab complete some object types but can also put in a custom call.
+
+```yaml
+Type: Object
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Field
+
+what fields should be returned by the request.
+If nothing specified will return the default values specified by Tenable.SC API documentation
+
+```yaml
+Type: Object
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Key
+
+ID or UUID of the object.
+If this is an object we will pull the ID or the UUID property to use.
+
+```yaml
+Type: ValidateNotNullOrEmptyAttribute
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+## OUTPUTS
+
+## NOTES
+
+## RELATED LINKS
