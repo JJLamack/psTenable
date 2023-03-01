@@ -15,7 +15,7 @@ Gets a list of all Organizations
 ## SYNTAX
 
 ```powershell
-Get-TenableSCOrganization [[-Organization] <Object>] [-Field <Object>] [<CommonParameters>]
+Get-TenableSCOrganization [[-Organization] <Object>] [-Properties <Object>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -50,9 +50,9 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -Field
+### -Properties
 
-Filters results returned based on the field.
+Filters results returned based on the Properties.
 Default displays all properities that can be returned from the Organization API endpoint except for those that can be quiered from other endpoints.
 
 ```yaml

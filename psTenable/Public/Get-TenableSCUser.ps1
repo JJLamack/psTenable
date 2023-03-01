@@ -9,9 +9,9 @@ function Get-TenableSCUser {
 
     Accepts an User Object, Id (Identity), or UUID (Universally Unique Identifier) of an Organization within Tenable.SC
 
-    .PARAMETER Field
+    .PARAMETER Properties
 
-    Filters results returned based on the field.
+    Filters results returned based on the Properties.
 
     #>
     [cmdletBinding(DefaultParameterSetName='Default')]
@@ -21,7 +21,7 @@ function Get-TenableSCUser {
         $User,
         [Parameter(Mandatory = $false)]
         [ArgumentCompletions("id","uuid","username","firstname","lastname","status","role","title","email","address","city","state","country","phone","fax","createdTime","modifiedTime","lastLogin","lastLoginIP","mustChangePassword","passwordExpires","passwordExpiration","passwordExpirationOverride","passwordSetDate","locked","failedLogins","authType","fingerprint","password","description","canUse","canManage","managedUsersGroups","managedObjectsGroups","preferences","ldaps","ldapUsername","linkedUsers","parent","responsibleAsset","group")]
-        $Field
+        $Properties
     )
     begin {
         $Endpoint = "user"
@@ -37,10 +37,10 @@ function Get-TenableSCUser {
         }
         
         if ($User) {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $User -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $User -PSType $PSType -Properties $Properties
         }
         else {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Properties $Properties
         }
         return $result
     }

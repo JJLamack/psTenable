@@ -17,25 +17,26 @@ Gets a list of Assets
 ### Default (Default)
 
 ```powershell
-Get-TenableSCAsset [[-Asset] <Object>] [-Field <Object>] [<CommonParameters>]
+Get-TenableSCAsset [[-Asset] <Object>] [-Properties <Object>] [<CommonParameters>]
 ```
 
 ### Exclude
 
 ```powershell
-Get-TenableSCAsset [-Field <Object>] [-ExcludeWatchLists] [-ExcludeAllDefined] [<CommonParameters>]
+Get-TenableSCAsset [-Properties <Object>] [-ExcludeWatchLists] [-ExcludeAllDefined] [<CommonParameters>]
 ```
 
 ### Manageable
 
 ```powershell
-Get-TenableSCAsset [-Field <Object>] [-Manageable] [-ExcludeWatchLists] [<CommonParameters>]
+Get-TenableSCAsset [-Properties <Object>] [-Manageable] [-ExcludeWatchLists] [<CommonParameters>]
 ```
 
 ### Usable
 
 ```powershell
-Get-TenableSCAsset [-Field <Object>] [-Usable] [-ExcludeWatchLists] [-ExcludeAllDefined] [<CommonParameters>]
+Get-TenableSCAsset [-Properties <Object>] [-Usable] [-ExcludeWatchLists] [-ExcludeAllDefined]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -70,9 +71,9 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -Field
+### -Properties
 
-Filters results returned based on the field.
+Filters results returned based on the Properties.
 
 ```yaml
 Type: Object

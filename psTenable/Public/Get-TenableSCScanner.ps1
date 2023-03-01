@@ -9,9 +9,9 @@ function Get-TenableSCScanner {
 
     Accepts an Scanner Object, Id (Identity), or UUID (Universally Unique Identifier) of an Organization within Tenable.SC
 
-    .PARAMETER Field
+    .PARAMETER Properties
 
-    Filters results returned based on the field.
+    Filters results returned based on the Properties.
 
     #>
     [cmdletBinding(DefaultParameterSetName='Default')]
@@ -21,7 +21,7 @@ function Get-TenableSCScanner {
         $Scanner,
         [Parameter(Mandatory = $false)]
         [ArgumentCompletions("id","name","description","status","ip","port","useProxy","enabled","verifyHost","managePlugins","authType","cert","username","password","agentCapable","version","webVersion","admin","msp","numScans","numHosts","numSessions","numTCPSessions","loadAvg","uptime","statusMessage","pluginSet","loadedPluginSet","serverUUID","createdTime","modifiedTime","accessKey","secretKey","zones","nessusManagerOrgs")]
-        $Field
+        $Properties
     )
     begin {
         $Endpoint = "scanner"
@@ -37,10 +37,10 @@ function Get-TenableSCScanner {
         }
         
         if ($Scanner) {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Scanner -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Scanner -PSType $PSType -Properties $Properties
         }
         else {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Properties $Properties
         }
         return $result
     }

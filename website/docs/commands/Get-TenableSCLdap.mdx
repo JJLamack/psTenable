@@ -15,7 +15,7 @@ Gets a list of ldap profiles
 ## SYNTAX
 
 ```powershell
-Get-TenableSCLdap [[-Ldap] <Object>] [-Field <Object>] [<CommonParameters>]
+Get-TenableSCLdap [[-Ldap] <Object>] [-Properties <Object>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -50,9 +50,9 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -Field
+### -Properties
 
-Filters results returned based on the field.
+Filters results returned based on the Properties.
 Default displays all properities that can be returned from the Ldap API endpoint except for those that can be quiered from other endpoints.
 
 ```yaml

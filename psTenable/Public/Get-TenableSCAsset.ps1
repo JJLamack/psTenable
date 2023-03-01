@@ -9,9 +9,9 @@ function Get-TenableSCAsset {
 
     Accepts an Asset Object, Id (Identity), or UUID (Universally Unique Identifier) of an Organization within Tenable.SC
 
-    .PARAMETER Field
+    .PARAMETER Properties
 
-    Filters results returned based on the field.
+    Filters results returned based on the Properties.
 
     .PARAMETER Usable
 
@@ -35,8 +35,8 @@ function Get-TenableSCAsset {
         [Parameter(ParameterSetName = 'Manageable', Mandatory = $false)]
         [Parameter(ParameterSetName = 'Default', Mandatory = $false)]
         [Parameter(ParameterSetName = 'Exclude', Mandatory = $false)]
-        [ArgumentCompletions("id","uuid","name","description","type","ownerGroup","status","creator","owner","targetGroup","groups","template","typeFields","type","tags","context","createdTime","modifiedTime","repositories","ipCount","assetDataFields","viewableIPs","organization","luminFields")]
-        $Field,
+        [ArgumentCompletions("id","uuid","name","description","type","ownerGroup","status","creator","owner","targetGroup","groups","template","typePropertiess","type","tags","context","createdTime","modifiedTime","repositories","ipCount","assetDataPropertiess","viewableIPs","organization","luminPropertiess")]
+        $Properties,
         [Parameter(ParameterSetName = 'Usable', Mandatory = $true)]
         [switch]
         $Usable,
@@ -83,13 +83,13 @@ function Get-TenableSCAsset {
         $Filter = $Filter -replace ",$",""
 
         if ($Asset) {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Asset -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Asset -PSType $PSType -Properties $Properties
         }
         else {
             if ($Filter -eq "") {
-                $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Field $Field
+                $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Properties $Properties
             } else {
-                $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Field $Field -Filter $Filter
+                $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Properties $Properties -Filter $Filter
             }
             
         }

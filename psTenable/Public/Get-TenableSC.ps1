@@ -13,9 +13,9 @@ function Get-TenableSC {
 
     The type of thing to run a Get request against. This will tab complete some object types but can also put in a custom call.
 
-    .PARAMETER Field
+    .PARAMETER Properties
 
-    what fields should be returned by the request. If nothing specified will return the default values specified by Tenable.SC API documentation
+    what Propertiess should be returned by the request. If nothing specified will return the default values specified by Tenable.SC API documentation
 
     .PARAMETER Key
 
@@ -27,7 +27,7 @@ function Get-TenableSC {
         [ArgumentCompletions("Organization")]
         $Resource,
         [Parameter(Mandatory = $false)]
-        $Field,
+        $Properties,
         [Parameter(Mandatory = $false, Position = 1, ValueFromPipeline=$true)]
         [ValidateNotNullOrEmpty]
         $Key
@@ -49,7 +49,7 @@ function Get-TenableSC {
         elseif ($k.uuid) {
             $k = $k.uuid
         }
-        Invoke-TenableSCMethod -PSType $PSType -Endpoint $Endpoint -Field $Field
+        Invoke-TenableSCMethod -PSType $PSType -Endpoint $Endpoint -Properties $Properties
     }
 
 }

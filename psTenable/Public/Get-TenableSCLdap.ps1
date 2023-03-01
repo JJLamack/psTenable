@@ -9,9 +9,9 @@ function Get-TenableSCLdap {
 
     Accepts an Ldap Object, Id (Identity), or UUID (Universally Unique Identifier) of an Ldap profile within Tenable.SC
 
-    .PARAMETER Field
+    .PARAMETER Properties
 
-    Filters results returned based on the field. Default displays all properities that can be returned from the Ldap API endpoint except for those that can be quiered from other endpoints.
+    Filters results returned based on the Properties. Default displays all properities that can be returned from the Ldap API endpoint except for those that can be quiered from other endpoints.
 
     #>
     [cmdletBinding(DefaultParameterSetName = 'Default')]
@@ -20,8 +20,8 @@ function Get-TenableSCLdap {
         [Alias('Id', 'UUID')]
         $Ldap,
         [Parameter(Mandatory = $false)]
-        [ArgumentCompletions("id", "name ", "description", "searchString", "host", "port", "encryption", "dn", "dnsField", "lowercase", "timeLimit", "password", "username", "attrEmail", "attrName", "attrPhone", "attrUsername", "ldapUserProvisioning", "ldapUserSync", "createdTime", "modifiedTime", "organizations")]
-        $Field
+        [ArgumentCompletions("id", "name ", "description", "searchString", "host", "port", "encryption", "dn", "dnsProperties", "lowercase", "timeLimit", "password", "username", "attrEmail", "attrName", "attrPhone", "attrUsername", "ldapUserProvisioning", "ldapUserSync", "createdTime", "modifiedTime", "organizations")]
+        $Properties
     )
     begin {
         $Endpoint = "ldap"
@@ -37,10 +37,10 @@ function Get-TenableSCLdap {
         }
         
         if ($Ldap) {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Ldap -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Ldap -PSType $PSType -Properties $Properties
         }
         else {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Properties $Properties
         }
         return $result
     }

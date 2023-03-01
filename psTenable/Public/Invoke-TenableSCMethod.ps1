@@ -45,7 +45,7 @@ function Invoke-TenableSCMethod {
         [Alias('Name', 'UUID')]
         $Id,
 
-        $Field,
+        $Properties,
 
         $Type,
 
@@ -94,10 +94,10 @@ function Invoke-TenableSCMethod {
                         if ($Filter) {
                             $uri += "filter=$Filter&"
                         }
-                        if ($Field) {
+                        if ($Properties) {
                             $uri += "fields="
-                            foreach ($f in $Field) {
-                                $uri += "$f,"
+                            foreach ($property in $Properties) {
+                                $uri += "$property,"
                             }
                             $uri = $uri -replace ',$', ''
                         }

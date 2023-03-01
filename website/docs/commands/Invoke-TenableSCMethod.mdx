@@ -15,7 +15,7 @@ Handles all common function API Rest calls to Tenable
 ## SYNTAX
 
 ```powershell
-Invoke-TenableSCMethod [[-Endpoint] <Object>] [-Id <String>] [-Field <Object>] [-Type <Object>]
+Invoke-TenableSCMethod [[-Endpoint] <Object>] [-Id <String>] [-Properties <Object>] [-Type <Object>]
  [-Filter <Object>] [-PSType <Object>] [-Method <WebRequestMethod>] [-TenableUrl <Object>]
  [-AccessKey <Object>] [-SecretKey <Object>] [<CommonParameters>]
 ```
@@ -68,9 +68,9 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Field
+### -Properties
 
-filters results returned based on the field
+{{ Fill Properties Description }}
 
 ```yaml
 Type: Object

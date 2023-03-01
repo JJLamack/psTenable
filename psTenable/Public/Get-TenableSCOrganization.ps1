@@ -9,9 +9,9 @@ function Get-TenableSCOrganization {
 
     Accepts an Organization Object, Id (Identity), or UUID (Universally Unique Identifier) of an Organization within Tenable.SC
 
-    .PARAMETER Field
+    .PARAMETER Properties
 
-    Filters results returned based on the field. Default displays all properities that can be returned from the Organization API endpoint except for those that can be quiered from other endpoints.
+    Filters results returned based on the Properties. Default displays all properities that can be returned from the Organization API endpoint except for those that can be quiered from other endpoints.
 
     #>
     [cmdletBinding(DefaultParameterSetName='Default')]
@@ -21,7 +21,7 @@ function Get-TenableSCOrganization {
         $Organization,
         [Parameter(Mandatory = $false)]
         [ArgumentCompletions("id", "uuid", "name", "description", "email", "address", "city", "state", "country", "phone", "fax", "ipInfoLinks", "zoneSelection", "restrictedIPs", "vulnScoreLow", "vulnScoreMedium", "vulnScoreHigh", "vulnScoreCritical", "vulnScoringSystem", "createdTime", "modifiedTime", "passwordExpires", "passwordExpiration", "userCount", "lces", "repositories", "zones", "nessusManagers", "pubSites", "ldaps")]
-        $Field
+        $Properties
     )
     begin {
         $Endpoint = "organization"
@@ -37,10 +37,10 @@ function Get-TenableSCOrganization {
         }
         
         if ($Organization) {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Organization -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Organization -PSType $PSType -Properties $Properties
         }
         else {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Properties $Properties
         }
         return $result
     }

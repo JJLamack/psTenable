@@ -9,9 +9,9 @@ function Get-TenableSCLce {
 
     Accepts an LCE Object, Id (Identity), or UUID (Universally Unique Identifier) of an Organization within Tenable.SC
 
-    .PARAMETER Field
+    .PARAMETER Properties
 
-    Filters results returned based on the field.
+    Filters results returned based on the Properties.
 
     #>
     [cmdletBinding(DefaultParameterSetName='Default')]
@@ -21,7 +21,7 @@ function Get-TenableSCLce {
         $Lce,
         [Parameter(Mandatory = $false)]
         [ArgumentCompletions("id","name","description","status","ip","ntpIP","port","username","password","privateKeyPassphrase","managedRanges","version","downloadVulns","vulnStatus","lastReportTime","createdTime","modifiedTime","silos","canUse","canManage","organizations","repositories")]
-        $Field
+        $Properties
     )
     begin {
         $Endpoint = "lce"
@@ -37,10 +37,10 @@ function Get-TenableSCLce {
         }
         
         if ($Lce) {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Lce -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Lce -PSType $PSType -Properties $Properties
         }
         else {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Properties $Properties
         }
         return $result
     }

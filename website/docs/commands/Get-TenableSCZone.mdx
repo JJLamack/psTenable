@@ -15,7 +15,7 @@ Gets a list of Tenable Security Center scan zones
 ## SYNTAX
 
 ```powershell
-Get-TenableSCZone [[-Zone] <Object>] [-Field <Object>] [<CommonParameters>]
+Get-TenableSCZone [[-Zone] <Object>] [-Properties <Object>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -50,10 +50,10 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -Field
+### -Properties
 
-Filters results returned based on the field.
-Default behavior returns all fields listed in argument completer
+Filters results returned based on the Properties given.
+Default behavior returns all Properties listed in argument completer
 
 ```yaml
 Type: Object

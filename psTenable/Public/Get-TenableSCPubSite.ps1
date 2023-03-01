@@ -9,9 +9,9 @@ function Get-TenableSCPubSite {
 
     Accepts an PubSite Object, Id (Identity), or UUID (Universally Unique Identifier) of an Organization within Tenable.SC
 
-    .PARAMETER Field
+    .PARAMETER Properties
 
-    Filters results returned based on the field.
+    Filters results returned based on the Properties.
 
     #>
     [cmdletBinding(DefaultParameterSetName='Default')]
@@ -21,7 +21,7 @@ function Get-TenableSCPubSite {
         $PubSite,
         [Parameter(Mandatory = $false)]
         [ArgumentCompletions("id","name","description","type","uri","useProxy","authType","cert","username","password","verifyHost","maxChunkSize","createdTime","modifiedTime")]
-        $Field
+        $Properties
     )
     begin {
         $Endpoint = "pubSite"
@@ -37,10 +37,10 @@ function Get-TenableSCPubSite {
         }
         
         if ($PubSite) {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $PubSite -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $PubSite -PSType $PSType -Properties $Properties
         }
         else {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Properties $Properties
         }
         return $result
     }

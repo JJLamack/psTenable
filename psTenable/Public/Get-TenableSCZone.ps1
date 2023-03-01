@@ -9,9 +9,9 @@ function Get-TenableSCZone {
 
     Accepts an Zone Object, Id (Identity), or UUID (Universally Unique Identifier) of a Scan Zone within Tenable.sc
 
-    .PARAMETER Field
+    .PARAMETER Properties
 
-    Filters results returned based on the field. Default behavior returns all fields listed in argument completer
+    Filters results returned based on the Properties given. Default behavior returns all Properties listed in argument completer
 
     #>
     [cmdletBinding(DefaultParameterSetName='Default')]
@@ -21,7 +21,7 @@ function Get-TenableSCZone {
         $Zone,
         [Parameter(Mandatory = $false)]
         [ArgumentCompletions("id","uuid","name","description","ipList","createdTime","modifiedTime","organizations","activeScanners","totalScanners","scanners")]
-        $Field
+        $Properties
     )
     begin {
         $Endpoint = "zone"
@@ -37,10 +37,10 @@ function Get-TenableSCZone {
         }
         
         if ($Zone) {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Zone -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Zone -PSType $PSType -Properties $Properties
         }
         else {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Properties $Properties
         }
         return $result
     }

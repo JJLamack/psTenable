@@ -15,7 +15,7 @@ Generic "Get a Tenable SC object" call for those that do not need complex handli
 ## SYNTAX
 
 ```powershell
-Get-TenableSC [-Resource] <Object> [-Field <Object>] [[-Key] <ValidateNotNullOrEmptyAttribute>]
+Get-TenableSC [-Resource] <Object> [-Properties <Object>] [[-Key] <ValidateNotNullOrEmptyAttribute>]
  [<CommonParameters>]
 ```
 
@@ -53,9 +53,9 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Field
+### -Properties
 
-what fields should be returned by the request.
+what Propertiess should be returned by the request.
 If nothing specified will return the default values specified by Tenable.SC API documentation
 
 ```yaml
