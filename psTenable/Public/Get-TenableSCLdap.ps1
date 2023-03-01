@@ -24,7 +24,7 @@ function Get-TenableSCLdap {
         $Field
     )
     begin {
-        $Resource = "ldap"
+        $Endpoint = "ldap"
         $PSType = "TenableSCLdap"
     }
     process {
@@ -37,10 +37,10 @@ function Get-TenableSCLdap {
         }
         
         if ($Ldap) {
-            $result = Invoke-TenableSCMethod -Resource $Resource -Id $Ldap -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Ldap -PSType $PSType -Field $Field
         }
         else {
-            $result = Invoke-TenableSCMethod -Resource $Resource -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Field $Field
         }
         return $result
     }

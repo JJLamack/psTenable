@@ -24,7 +24,7 @@ function Get-TenableSCUser {
         $Field
     )
     begin {
-        $Resource = "user"
+        $Endpoint = "user"
         $PSType = "TenableSCUser"
     }
     process {
@@ -37,10 +37,10 @@ function Get-TenableSCUser {
         }
         
         if ($User) {
-            $result = Invoke-TenableSCMethod -Resource $Resource -Id $User -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $User -PSType $PSType -Field $Field
         }
         else {
-            $result = Invoke-TenableSCMethod -Resource $Resource -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Field $Field
         }
         return $result
     }

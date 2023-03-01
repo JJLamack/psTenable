@@ -54,7 +54,7 @@ function Get-TenableSCAsset {
         $ExcludeAllDefined
     )
     begin {
-        $Resource = "asset"
+        $Endpoint = "asset"
         $PSType = "TenableSCAsset"
     }
     process {
@@ -83,13 +83,13 @@ function Get-TenableSCAsset {
         $Filter = $Filter -replace ",$",""
 
         if ($Asset) {
-            $result = Invoke-TenableSCMethod -Resource $Resource -Id $Asset -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Asset -PSType $PSType -Field $Field
         }
         else {
             if ($Filter -eq "") {
-                $result = Invoke-TenableSCMethod -Resource $Resource -PSType $PSType -Field $Field
+                $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Field $Field
             } else {
-                $result = Invoke-TenableSCMethod -Resource $Resource -PSType $PSType -Field $Field -Filter $Filter
+                $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Field $Field -Filter $Filter
             }
             
         }

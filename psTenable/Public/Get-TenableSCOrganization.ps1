@@ -24,7 +24,7 @@ function Get-TenableSCOrganization {
         $Field
     )
     begin {
-        $Resource = "organization"
+        $Endpoint = "organization"
         $PSType = "TenableSCOrganization"
     }
     process {
@@ -37,10 +37,10 @@ function Get-TenableSCOrganization {
         }
         
         if ($Organization) {
-            $result = Invoke-TenableSCMethod -Resource $Resource -Id $Organization -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Organization -PSType $PSType -Field $Field
         }
         else {
-            $result = Invoke-TenableSCMethod -Resource $Resource -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Field $Field
         }
         return $result
     }

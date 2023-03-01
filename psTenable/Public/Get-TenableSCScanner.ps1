@@ -24,7 +24,7 @@ function Get-TenableSCScanner {
         $Field
     )
     begin {
-        $Resource = "scanner"
+        $Endpoint = "scanner"
         $PSType = "TenableSCScanner"
     }
     process {
@@ -37,10 +37,10 @@ function Get-TenableSCScanner {
         }
         
         if ($Scanner) {
-            $result = Invoke-TenableSCMethod -Resource $Resource -Id $Scanner -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Scanner -PSType $PSType -Field $Field
         }
         else {
-            $result = Invoke-TenableSCMethod -Resource $Resource -PSType $PSType -Field $Field
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Field $Field
         }
         return $result
     }
