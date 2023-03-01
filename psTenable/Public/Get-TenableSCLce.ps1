@@ -25,7 +25,6 @@ function Get-TenableSCLce {
     )
     begin {
         $Endpoint = "lce"
-        $PSType = "TenableSCLce"
     }
     process {
         $result = Get-TenableSC -Resource $Endpoint -Properties $Properties -Key $Lce
