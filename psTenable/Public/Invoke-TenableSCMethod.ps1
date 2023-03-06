@@ -23,6 +23,10 @@ function Invoke-TenableSCMethod {
 
     Provides Powershell Type to bind the results to.
 
+    .PARAMETER JsonBody
+
+    json object for queries
+
     .PARAMETER Method
 
     default "GET". Web request methods
@@ -40,6 +44,8 @@ function Invoke-TenableSCMethod {
         $Properties,
 
         $PSType,
+
+        $JsonBody,
 
         [Microsoft.PowerShell.Commands.WebRequestMethod]
         $Method = 'GET',
@@ -90,7 +96,12 @@ function Invoke-TenableSCMethod {
 
         try {
             Write-Verbose $uri
-            $result = Invoke-RestMethod @restParams -Uri $uri
+            if ($JsonBody) {
+                $result = Invoke-RestMethod @restParams -Uri $uri -Body $JsonBody
+            }
+            else {
+                $result = Invoke-RestMethod @restParams -Uri $uri
+            }
             if ($PSType) {
                 foreach ($r in $result.response) {
                     $r.pstypeNames.add($PSType)

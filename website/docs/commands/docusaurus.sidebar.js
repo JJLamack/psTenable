@@ -21,5 +21,6 @@ module.exports = [
     'commands/Get-TenableSCStatus',
     'commands/Get-TenableSCUser',
     'commands/Get-TenableSCZone',
-    'commands/Invoke-TenableSCMethod'
+    'commands/Invoke-TenableSCMethod',
+    'commands/New-TenableSCAcceptRiskRule'
 ];

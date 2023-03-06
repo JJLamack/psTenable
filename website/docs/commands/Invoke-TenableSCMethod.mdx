@@ -16,8 +16,8 @@ Handles all common function API Rest calls to Tenable
 
 ```powershell
 Invoke-TenableSCMethod [[-Endpoint] <Object>] [-Id <String>] [-Properties <Object>] [-PSType <Object>]
- [-Method <WebRequestMethod>] [-TenableUrl <Object>] [-AccessKey <Object>] [-SecretKey <Object>]
- [<CommonParameters>]
+ [-JsonBody <Object>] [-Method <WebRequestMethod>] [-TenableUrl <Object>] [-AccessKey <Object>]
+ [-SecretKey <Object>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -87,6 +87,22 @@ Accept wildcard characters: False
 ### -PSType
 
 Provides Powershell Type to bind the results to.
+
+```yaml
+Type: Object
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -JsonBody
+
+json object for queries
 
 ```yaml
 Type: Object
