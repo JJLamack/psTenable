@@ -49,7 +49,7 @@ function Get-TenableSC {
         elseif ($k.uuid) {
             $k = $k.uuid
         }
-        Invoke-TenableSCMethod -PSType $PSType -Endpoint $Endpoint -Properties $Properties
+        Invoke-TenableSCMethod -PSType $PSType -Endpoint $Endpoint -Properties $Properties -Id $k
     }
 
 }

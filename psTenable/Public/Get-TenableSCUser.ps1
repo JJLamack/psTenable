@@ -13,6 +13,10 @@ function Get-TenableSCUser {
 
     Filters results returned based on the Properties.
 
+    .PARAMETER CurrentUser
+
+    Only returns the current user's data
+
     #>
     [cmdletBinding(DefaultParameterSetName = 'Default')]
     param (
@@ -22,16 +26,24 @@ function Get-TenableSCUser {
         [Parameter(Mandatory = $false)]
         [ArgumentCompletions("id", "uuid", "username", "firstname", "lastname", "status", "role", "title", "email", "address", "city", "state", "country", "phone", "fax", "createdTime", "modifiedTime", "lastLogin", "lastLoginIP", "mustChangePassword", "passwordExpires", "passwordExpiration", "passwordExpirationOverride", "passwordSetDate", "locked", "failedLogins", "authType", "fingerprint", "password", "description", "canUse", "canManage", "managedUsersGroups", "managedObjectsGroups", "preferences", "ldaps", "ldapUsername", "linkedUsers", "parent", "responsibleAsset", "group")]
         $Properties,
+        [Parameter(ParameterSetName = "Org", Mandatory = $true)]
+        $Organization,
         [Parameter(ParameterSetName = 'CurrentUser', Mandatory = $true)]
         [switch]
         $CurrentUser
     )
     begin {
         $Endpoint = "user"
+        $PSType = "TenableSCUser"
     }
     process {
         if ($CurrentUser) {
-            $result = Get-TenableSC -Resource "currentUser" -Properties $Properties
+            $result = Invoke-TenableSCMethod -Endpoint "currentUser" -Properties $Properties -PSType $PSType
+        }
+        elseif ($Organization) {
+            $OrgUri = Format-UriFilter -Name "orgID" -Object $Organization
+            $Endpoint += "?$OrgUri"
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Properties $Properties -PSType $PSType
         }
         else {
             $result = Get-TenableSC -Resource $Endpoint -Properties $Properties -Key $User
