@@ -14,8 +14,16 @@ Gets a list of all Organizations
 
 ## SYNTAX
 
+### Default (Default)
+
 ```powershell
 Get-TenableSCOrganization [[-Organization] <Object>] [-Properties <Object>] [<CommonParameters>]
+```
+
+### Current
+
+```powershell
+Get-TenableSCOrganization [-CurrentOrganization] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -40,7 +48,7 @@ Accepts an Organization Object, Id (Identity), or UUID (Universally Unique Ident
 
 ```yaml
 Type: Object
-Parameter Sets: (All)
+Parameter Sets: Default
 Aliases: Id, UUID
 
 Required: False
@@ -57,12 +65,28 @@ Default displays all properities that can be returned from the Organization API 
 
 ```yaml
 Type: Object
-Parameter Sets: (All)
+Parameter Sets: Default
 Aliases:
 
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -CurrentOrganization
+
+Filters results to only show the current organization that the user credentials provided are a part of
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: Current
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

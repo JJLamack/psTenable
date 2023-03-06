@@ -10,12 +10,27 @@ hide_table_of_contents: false
 
 ## SYNOPSIS
 
-Gets a list of Users
+Gets a list of Users from Tenable Security Center.
+If CurrentUser flag is set then only gets the current user.
 
 ## SYNTAX
 
+### Default (Default)
+
 ```powershell
 Get-TenableSCUser [[-User] <Object>] [-Properties <Object>] [<CommonParameters>]
+```
+
+### Org
+
+```powershell
+Get-TenableSCUser [-Properties <Object>] -Organization <Object> [<CommonParameters>]
+```
+
+### CurrentUser
+
+```powershell
+Get-TenableSCUser [-Properties <Object>] [-CurrentUser] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -40,7 +55,7 @@ Accepts an User Object, Id (Identity), or UUID (Universally Unique Identifier) o
 
 ```yaml
 Type: Object
-Parameter Sets: (All)
+Parameter Sets: Default
 Aliases: Id, UUID
 
 Required: False
@@ -62,6 +77,38 @@ Aliases:
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Organization
+
+{{ Fill Organization Description }}
+
+```yaml
+Type: Object
+Parameter Sets: Org
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -CurrentUser
+
+Only returns the current user's data
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: CurrentUser
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
