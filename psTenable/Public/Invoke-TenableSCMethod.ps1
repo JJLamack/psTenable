@@ -78,7 +78,8 @@ function Invoke-TenableSCMethod {
                     if ($uri -contains "?") {
                         # If there are other filters already in query then add fields value with an '&'
                         $uri += "&$propUri"
-                    } else {
+                    }
+                    else {
                         # There are no other filters in place. add a '?' to query
                         $uri += "?$propUri"
                     }

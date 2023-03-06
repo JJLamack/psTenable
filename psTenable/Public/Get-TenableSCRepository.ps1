@@ -6,17 +6,17 @@ function Get-TenableSCRepository {
     Gets the repositories the user has access to.
 
     #>
-    [cmdletBinding(DefaultParameterSetName='Default')]
+    [cmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Parameter(ParameterSetName = 'Default', Mandatory = $false, Position = 0, ValueFromPipeline = $true)]
         [Alias('Id', 'UUID')]
         $Repository,
         [Parameter(ParameterSetName = 'Default', Mandatory = $false)]
-        [Parameter(ParameterSetName = 'TypeFilter', Mandatory=$false)]
-        [ArgumentCompletions("id","uuid","name","description","type","dataFormat","vulnCount","remoteID","remoteIP","running","downloadFormat","lastSyncTime","lastVulnUpdate","createdTime","modifiedTime","luminPropertiess","ipOverlaps","transfer","typePropertiess ","remoteSchedule","organizations")]
+        [Parameter(ParameterSetName = 'TypeFilter', Mandatory = $false)]
+        [ArgumentCompletions("id", "uuid", "name", "description", "type", "dataFormat", "vulnCount", "remoteID", "remoteIP", "running", "downloadFormat", "lastSyncTime", "lastVulnUpdate", "createdTime", "modifiedTime", "luminPropertiess", "ipOverlaps", "transfer", "typePropertiess ", "remoteSchedule", "organizations")]
         $Properties,
-        [Parameter(ParameterSetName = 'TypeFilter', Mandatory=$false)]
-        [ValidateSet("All","Local","Remote","Offline")]
+        [Parameter(ParameterSetName = 'TypeFilter', Mandatory = $false)]
+        [ValidateSet("All", "Local", "Remote", "Offline")]
         $Type = "All"
     )
     begin {

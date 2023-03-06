@@ -28,15 +28,15 @@ function Get-TenableSC {
         $Resource,
         [Parameter(Mandatory = $false)]
         $Properties,
-        [Parameter(Mandatory = $false, Position = 1, ValueFromPipeline=$true)]
+        [Parameter(Mandatory = $false, Position = 1, ValueFromPipeline = $true)]
         [ValidateNotNullOrEmpty]
         $Key
     )
 
     # since Tenable.SC API camelCase's there endpoints. make sure first character is lower case on endpoint call
-    $Endpoint = $Resource.substring(0,1).tolower()+$Resource.substring(1)
+    $Endpoint = $Resource.substring(0, 1).tolower() + $Resource.substring(1)
     # make sure first letter is uppercases for Type binding
-    $PSType = "TenableSC"+$Resource.substring(0,1).toupper()+$Resource.substring(1)
+    $PSType = "TenableSC" + $Resource.substring(0, 1).toupper() + $Resource.substring(1)
 
     if (-not $PSBoundParameters.ContainsKey('Key')) {
         Invoke-TenableSCMethod -PSType $PSType -Endpoint $Endpoint

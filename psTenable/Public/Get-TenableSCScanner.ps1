@@ -14,13 +14,13 @@ function Get-TenableSCScanner {
     Filters results returned based on the Properties.
 
     #>
-    [cmdletBinding(DefaultParameterSetName='Default')]
+    [cmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Parameter(ParameterSetName = 'Default', Mandatory = $false, Position = 0, ValueFromPipeline = $true)]
         [Alias('Id', 'UUID')]
         $Scanner,
         [Parameter(Mandatory = $false)]
-        [ArgumentCompletions("id","name","description","status","ip","port","useProxy","enabled","verifyHost","managePlugins","authType","cert","username","password","agentCapable","version","webVersion","admin","msp","numScans","numHosts","numSessions","numTCPSessions","loadAvg","uptime","statusMessage","pluginSet","loadedPluginSet","serverUUID","createdTime","modifiedTime","accessKey","secretKey","zones","nessusManagerOrgs")]
+        [ArgumentCompletions("id", "name", "description", "status", "ip", "port", "useProxy", "enabled", "verifyHost", "managePlugins", "authType", "cert", "username", "password", "agentCapable", "version", "webVersion", "admin", "msp", "numScans", "numHosts", "numSessions", "numTCPSessions", "loadAvg", "uptime", "statusMessage", "pluginSet", "loadedPluginSet", "serverUUID", "createdTime", "modifiedTime", "accessKey", "secretKey", "zones", "nessusManagerOrgs")]
         $Properties
     )
     begin {

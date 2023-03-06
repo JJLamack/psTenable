@@ -16,8 +16,7 @@ https://powershell.one/powershell-internals/attributes/auto-completion
 #>
 
 # are we running in Windows PowerShell?
-if ($PSVersionTable.PSEdition -ne 'Core')
-{
+if ($PSVersionTable.PSEdition -ne 'Core') {
   # add the attribute [ArgumentCompletions()]:
   $code = @'
 using System;

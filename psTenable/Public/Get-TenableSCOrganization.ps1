@@ -14,7 +14,7 @@ function Get-TenableSCOrganization {
     Filters results returned based on the Properties. Default displays all properities that can be returned from the Organization API endpoint except for those that can be quiered from other endpoints.
 
     #>
-    [cmdletBinding(DefaultParameterSetName='Default')]
+    [cmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Parameter(ParameterSetName = 'Default', Mandatory = $false, Position = 0, ValueFromPipeline = $true)]
         [Alias('Id', 'UUID')]

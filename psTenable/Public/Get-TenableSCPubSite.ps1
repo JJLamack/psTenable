@@ -14,13 +14,13 @@ function Get-TenableSCPubSite {
     Filters results returned based on the Properties.
 
     #>
-    [cmdletBinding(DefaultParameterSetName='Default')]
+    [cmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Parameter(ParameterSetName = 'Default', Mandatory = $false, Position = 0, ValueFromPipeline = $true)]
         [Alias('Id', 'UUID')]
         $PubSite,
         [Parameter(Mandatory = $false)]
-        [ArgumentCompletions("id","name","description","type","uri","useProxy","authType","cert","username","password","verifyHost","maxChunkSize","createdTime","modifiedTime")]
+        [ArgumentCompletions("id", "name", "description", "type", "uri", "useProxy", "authType", "cert", "username", "password", "verifyHost", "maxChunkSize", "createdTime", "modifiedTime")]
         $Properties
     )
     begin {

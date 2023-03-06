@@ -25,7 +25,7 @@
                 <Name>modifiedDate</Name>
                 <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.modifiedTime)</GetScriptBlock>
             </ScriptProperty>
-                        <ScriptProperty>
+            <ScriptProperty>
                 <Name>lastSyncDate</Name>
                 <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.lastSyncTime)</GetScriptBlock>
             </ScriptProperty>

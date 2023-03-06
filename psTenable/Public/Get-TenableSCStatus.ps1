@@ -14,13 +14,13 @@ function Get-TenableSCStatus {
     Filters results returned based on the Properties. All Propertiess are returned by default
 
     #>
-    [cmdletBinding(DefaultParameterSetName='Default')]
+    [cmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Parameter(ParameterSetName = 'Default', Mandatory = $false, Position = 0, ValueFromPipeline = $true)]
         [Alias('Id', 'UUID')]
         $Status,
         [Parameter(Mandatory = $false)]
-        [ArgumentCompletions("jobd","licenseStatus","migrationStatus","PluginSubscriptionStatus","LCEPluginSubscriptionStatus","PassivePluginSubscriptionStatus","pluginUpdates","feedUpdates","activeIPs","licensedIPs","zoneStatus","noLCEs","noReps","lastDbBackupStatus","lastDbBackupSuccess","lastDbBackupFailure")]
+        [ArgumentCompletions("jobd", "licenseStatus", "migrationStatus", "PluginSubscriptionStatus", "LCEPluginSubscriptionStatus", "PassivePluginSubscriptionStatus", "pluginUpdates", "feedUpdates", "activeIPs", "licensedIPs", "zoneStatus", "noLCEs", "noReps", "lastDbBackupStatus", "lastDbBackupSuccess", "lastDbBackupFailure")]
         $Properties
     )
     begin {

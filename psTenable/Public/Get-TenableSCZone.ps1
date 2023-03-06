@@ -14,13 +14,13 @@ function Get-TenableSCZone {
     Filters results returned based on the Properties given. Default behavior returns all Properties listed in argument completer
 
     #>
-    [cmdletBinding(DefaultParameterSetName='Default')]
+    [cmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Parameter(ParameterSetName = 'Default', Mandatory = $false, Position = 0, ValueFromPipeline = $true)]
         [Alias('Id', 'UUID')]
         $Zone,
         [Parameter(Mandatory = $false)]
-        [ArgumentCompletions("id","uuid","name","description","ipList","createdTime","modifiedTime","organizations","activeScanners","totalScanners","scanners")]
+        [ArgumentCompletions("id", "uuid", "name", "description", "ipList", "createdTime", "modifiedTime", "organizations", "activeScanners", "totalScanners", "scanners")]
         $Properties
     )
     begin {
