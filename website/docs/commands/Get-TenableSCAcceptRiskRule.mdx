@@ -1,0 +1,153 @@
+---
+id: Get-TenableSCAcceptRiskRule
+title: Get-TenableSCAcceptRiskRule
+keywords:
+  - PowerShell
+  - Documentation
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Gets a list of Accept Risk Rules
+
+## SYNTAX
+
+### Default (Default)
+
+```powershell
+Get-TenableSCAcceptRiskRule [[-AcceptRiskRule] <Object>] [-Properties <Object>] [<CommonParameters>]
+```
+
+### Filter
+
+```powershell
+Get-TenableSCAcceptRiskRule [-Properties <Object>] [-Repository <String>] [-Organization <String>]
+ [-PluginId <Int32>] [-Port <Int32>] [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+{{ Fill in the Description }}
+
+## EXAMPLES
+
+### Example 1
+
+```powershell
+PS C:\> {{ Add example code here }}
+```
+
+{{ Add example description here }}
+
+## PARAMETERS
+
+### -AcceptRiskRule
+
+{{ Fill AcceptRiskRule Description }}
+
+```yaml
+Type: Object
+Parameter Sets: Default
+Aliases: Id, UUID
+
+Required: False
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -Properties
+
+Filters results returned based on the Properties.
+
+```yaml
+Type: Object
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Repository
+
+{{ Fill Repository Description }}
+
+```yaml
+Type: String
+Parameter Sets: Filter
+Aliases: RepositoryId
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Organization
+
+{{ Fill Organization Description }}
+
+```yaml
+Type: String
+Parameter Sets: Filter
+Aliases: OrganizationId
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PluginId
+
+Plugin Id.
+View Tenable SC documentation for more information.
+
+```yaml
+Type: Int32
+Parameter Sets: Filter
+Aliases:
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Port
+
+computer port number
+
+```yaml
+Type: Int32
+Parameter Sets: Filter
+Aliases:
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+## OUTPUTS
+
+## NOTES
+
+## RELATED LINKS

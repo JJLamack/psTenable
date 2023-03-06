@@ -14,8 +14,16 @@ Gets the repositories the user has access to.
 
 ## SYNTAX
 
+### Default (Default)
+
 ```powershell
-Get-TenableSCRepository [[-Repository] <Object>] [-Properties <Object>] [-Type <Object>] [<CommonParameters>]
+Get-TenableSCRepository [[-Repository] <Object>] [-Properties <Object>] [<CommonParameters>]
+```
+
+### TypeFilter
+
+```powershell
+Get-TenableSCRepository [-Properties <Object>] [-Type <Object>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -40,7 +48,7 @@ PS C:\> {{ Add example code here }}
 
 ```yaml
 Type: Object
-Parameter Sets: (All)
+Parameter Sets: Default
 Aliases: Id, UUID
 
 Required: False
@@ -72,7 +80,7 @@ Accept wildcard characters: False
 
 ```yaml
 Type: Object
-Parameter Sets: (All)
+Parameter Sets: TypeFilter
 Aliases:
 
 Required: False

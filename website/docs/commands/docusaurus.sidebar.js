@@ -10,6 +10,7 @@
 
 module.exports = [
     'commands/Get-TenableSC',
+    'commands/Get-TenableSCAcceptRiskRule',
     'commands/Get-TenableSCAsset',
     'commands/Get-TenableSCLce',
     'commands/Get-TenableSCLdap',
