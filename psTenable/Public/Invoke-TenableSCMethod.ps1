@@ -15,17 +15,9 @@ function Invoke-TenableSCMethod {
 
     Filters operations based on the ID or name
 
-    .PARAMETER Field
+    .PARAMETER Properties
 
-    filters results returned based on the field
-
-    .PARAMETER Type
-
-    filter results based on the Type. Put into Query string
-
-    .PARAMETER Filter
-
-    filter results using custom filters defined by each API call
+    filters what properties are returned as a results returned based on the field
 
     .PARAMETER PSType
 
@@ -46,10 +38,6 @@ function Invoke-TenableSCMethod {
         $Id,
 
         $Properties,
-
-        $Type,
-
-        $Filter,
 
         $PSType,
 
@@ -85,50 +73,41 @@ function Invoke-TenableSCMethod {
                 if ($Id) {
                     $uri += "/$Id"
                 }
-                else {
-                    if ($Type -or $Field -or $Filter) {
-                        $uri += "?"
-                        if ($Type) {
-                            $uri += "type=$Type&"
-                        }
-                        if ($Filter) {
-                            $uri += "filter=$Filter&"
-                        }
-                        if ($Properties) {
-                            $uri += "fields="
-                            foreach ($property in $Properties) {
-                                $uri += "$property,"
-                            }
-                            $uri = $uri -replace ',$', ''
-                        }
-                        # Remove trailing &. This occurs if Type or Filter is specified but Field is not 
-                        $uri = $uri -replace '&$', ''
+                elseif ($Properties) {
+                    $propUri = Format-UriFilter -Name "fields" -Object $Properties
+                    if ($uri -contains "?") {
+                        # If there are other filters already in query then add fields value with an '&'
+                        $uri += "&$propUri"
+                    } else {
+                        # There are no other filters in place. add a '?' to query
+                        $uri += "?$propUri"
                     }
                 }
-            }
 
-            try {
-                Write-Verbose $uri
-                $result = Invoke-RestMethod @restParams -Uri $uri
-                if ($PSType) {
-                    foreach ($r in $result.response) {
-                        $r.pstypeNames.add($PSType)
-                    }
-                }
-                return $result.Response
             }
-            catch {
-                if ($_.Exception.Response.StatusCode -eq 401) {
-                    Write-Error "Unauthorized error returned from $uri, please verify API Key and try again"
+        }
+
+        try {
+            Write-Verbose $uri
+            $result = Invoke-RestMethod @restParams -Uri $uri
+            if ($PSType) {
+                foreach ($r in $result.response) {
+                    $r.pstypeNames.add($PSType)
                 }
-                elseif ($_.Exception.Response.StatusCode -eq 403) {
-                    Write-Error "Unauthorized error returned from $uri, please verify API Key is correct, has access then try again"
-                }
-                else {
-                    Write-Error "Error calling $uri $($_.Exception.Message) StatusCode: $($_.Exception.Response)"
-                }
-                throw $_.Exception
             }
+            return $result.Response
+        }
+        catch {
+            if ($_.Exception.Response.StatusCode -eq 401) {
+                Write-Error "Unauthorized error returned from $uri, please verify API Key and try again"
+            }
+            elseif ($_.Exception.Response.StatusCode -eq 403) {
+                Write-Error "Unauthorized error returned from $uri, please verify API Key is correct, has access then try again"
+            }
+            else {
+                Write-Error "Error calling $uri $($_.Exception.Message) StatusCode: $($_.Exception.Response)"
+            }
+            throw $_.Exception
         }
     }
 }

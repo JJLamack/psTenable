@@ -21,7 +21,7 @@ function Format-UriFilter {
         [Parameter(Mandatory = $true)]
         $Object
     )
-    $result = $Name
+    $result = "$Name="
     foreach ($item in $Object) {
         # Checks if given item is an object with an Id or uuid property
         if ($item.id) {
@@ -35,6 +35,6 @@ function Format-UriFilter {
         }
     }
     # Adds a '&' to allow for another filter query to be put on the end
-    $result = $result -replace ',$', '&'
+    $result = $result -replace ',$', ''
     return $result
 }

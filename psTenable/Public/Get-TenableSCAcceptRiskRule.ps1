@@ -66,26 +66,30 @@ function Get-TenableSCAcceptRiskRule {
                 $AcceptRiskRule = $AcceptRiskRule.uuid
             }
             $result = Invoke-TenableSCMethod -Id $AcceptRiskRule -Endpoint $Endpoint -PSType $PSType -Properties $Properties
-        } else {
-            $Endpoint += "?"
+        }
+        else {
+            $FilterUri = ""
             if ($Repository) {
                 $repoUri = Format-UriFilter -Name "repositoryIDs" -Object $Repository
-                $Endpoint += $repoUri
+                $FilterUri += "&$repoUri"
             }
             if ($Organization) {
                 $orgUri = Format-UriFilter -Name "organizationIDs" -Object $Organization
-                $Endpoint += $orgUri
+                $FilterUri += "&$orgUri"
             }
             if ($PluginId) {
                 $pluginUri = Format-UriFilter -Name "pluginID" -Object $Organization
-                $Endpoint += $pluginUri
+                $FilterUri += "&$pluginUri"
             }
             if ($Port) {
                 $portUri = Format-UriFilter -Name "port" -Object $Port
-                $Endpoint += $portUri
+                $FilterUri += "&$portUri"
             }
-            # Remove extra characters at the end of Uri
-            $Endpoint = $Endpoint -replace '&$|?$', ''
+            if ($FilterUri -ne "") {
+                # Remove extra '&' at start of filter
+                $FilterUri = $FilterUri -replace '^&', ''
+                $Endpoint += "?$FilterUri"
+            }
 
             $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Properties $Properties
         }

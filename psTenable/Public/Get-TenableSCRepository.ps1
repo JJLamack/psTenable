@@ -12,9 +12,10 @@ function Get-TenableSCRepository {
         [Alias('Id', 'UUID')]
         $Repository,
         [Parameter(ParameterSetName = 'Default', Mandatory = $false)]
+        [Parameter(ParameterSetName = 'TypeFilter', Mandatory=$false)]
         [ArgumentCompletions("id","uuid","name","description","type","dataFormat","vulnCount","remoteID","remoteIP","running","downloadFormat","lastSyncTime","lastVulnUpdate","createdTime","modifiedTime","luminPropertiess","ipOverlaps","transfer","typePropertiess ","remoteSchedule","organizations")]
         $Properties,
-        [Parameter(Mandatory=$false)]
+        [Parameter(ParameterSetName = 'TypeFilter', Mandatory=$false)]
         [ValidateSet("All","Local","Remote","Offline")]
         $Type = "All"
     )
@@ -23,19 +24,14 @@ function Get-TenableSCRepository {
         $PSType = "TenableSCRepository"
     }
     process {
-        # This needs to be in process to handle valuesFromPipeline
-        if ($Repository.ID) {
-            $Repository = $Repository.Id
-        }
-        elseif ($Repository.UUID) {
-            $Repository = $Repository.UUID
-        }
-
         if ($Repository) {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Repository -PSType $PSType -Properties $Properties -Type $Type
+            $result = Get-TenableSC -Resource $Endpoint -Key $Repository -Properties $Properties
         }
         else {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Properties $Properties -Type $Type
+            if ($Type) {
+                $Endpoint += "?type=$Type"
+            }
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Properties $Properties
         }
         return $result
     }

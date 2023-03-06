@@ -25,23 +25,9 @@ function Get-TenableSCUser {
     )
     begin {
         $Endpoint = "user"
-        $PSType = "TenableSCUser"
     }
     process {
-        # This needs to be in process to handle valuesFromPipeline
-        if ($User.id) {
-            $User = $User.id
-        }
-        elseif ($User.uuid) {
-            $User = $User.uuid
-        }
-        
-        if ($User) {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $User -PSType $PSType -Properties $Properties
-        }
-        else {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Properties $Properties
-        }
+        $result = Get-TenableSC -Resource $Endpoint -Properties $Properties -Key $User
         return $result
     }
 }

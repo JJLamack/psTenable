@@ -26,7 +26,7 @@ function Get-TenableSCAsset {
     Remove Assets with 'watchlist' type from results
 
     #>
-    [cmdletBinding(DefaultParameterSetName='Default')]
+    [cmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Parameter(ParameterSetName = 'Default', Mandatory = $false, Position = 0, ValueFromPipeline = $true)]
         [Alias('Id', 'UUID')]
@@ -35,7 +35,7 @@ function Get-TenableSCAsset {
         [Parameter(ParameterSetName = 'Manageable', Mandatory = $false)]
         [Parameter(ParameterSetName = 'Default', Mandatory = $false)]
         [Parameter(ParameterSetName = 'Exclude', Mandatory = $false)]
-        [ArgumentCompletions("id","uuid","name","description","type","ownerGroup","status","creator","owner","targetGroup","groups","template","typePropertiess","type","tags","context","createdTime","modifiedTime","repositories","ipCount","assetDataPropertiess","viewableIPs","organization","luminPropertiess")]
+        [ArgumentCompletions("id", "uuid", "name", "description", "type", "ownerGroup", "status", "creator", "owner", "targetGroup", "groups", "template", "typePropertiess", "type", "tags", "context", "createdTime", "modifiedTime", "repositories", "ipCount", "assetDataPropertiess", "viewableIPs", "organization", "luminPropertiess")]
         $Properties,
         [Parameter(ParameterSetName = 'Usable', Mandatory = $true)]
         [switch]
@@ -58,40 +58,36 @@ function Get-TenableSCAsset {
         $PSType = "TenableSCAsset"
     }
     process {
-        # This needs to be in process to handle valuesFromPipeline
-        if ($Asset.id) {
-            $Asset = $Asset.id
-        }
-        elseif ($Asset.uuid) {
-            $Asset = $Asset.uuid
-        }
-        
-        # Create Filter
-        $Filter = ""
-        if ($Usable) {
-            $Filter += "usable,"
-        }
-        if ($Manageable) {
-            $Filter += "manageable,"
-        }
-        if ($ExcludeWatchLists) {
-            $Filter += "excludeWatchlists,"
-        }
-        if ($ExcludeAllDefined) {
-            $Filter += "excludeAllDefined,"
-        }
-        $Filter = $Filter -replace ",$",""
 
         if ($Asset) {
-            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Asset -PSType $PSType -Properties $Properties
+            if ($Asset.id) {
+                $Asset = $Asset.id
+            }
+            elseif ($Asset.uuid) {
+                $Asset = $Asset.uuid
+            }
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Id $Asset -Properties $Properties
         }
         else {
-            if ($Filter -eq "") {
-                $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Properties $Properties
-            } else {
-                $result = Invoke-TenableSCMethod -Endpoint $Endpoint -PSType $PSType -Properties $Properties -Filter $Filter
+            # Create Filter
+            $FilterUri = ""
+            if ($Usable) {
+                $FilterUri += "usable,"
             }
-            
+            if ($Manageable) {
+                $FilterUri += "manageable,"
+            }
+            if ($ExcludeWatchLists) {
+                $FilterUri += "excludeWatchlists,"
+            }
+            if ($ExcludeAllDefined) {
+                $FilterUri += "excludeAllDefined,"
+            }
+            if ($FilterUri -ne "") {
+                $FilterUri = $FilterUri -replace ",$", ""
+                $Endpoint += "?filter=$FilterUri"
+            }
+            $result = Invoke-TenableSCMethod -Endpoint $Endpoint -Properties $Properties
         }
         return $result
     }
