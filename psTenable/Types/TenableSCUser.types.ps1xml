@@ -19,11 +19,11 @@
             </MemberSet>
             <ScriptProperty>
                 <Name>createdDate</Name>
-                <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.createdTime)</GetScriptBlock>
+                <GetScriptBlock>if($this.createdTime){(Get-Date 01.01.1970).AddSeconds($this.createdTime)}</GetScriptBlock>
             </ScriptProperty>
             <ScriptProperty>
                 <Name>modifiedDate</Name>
-                <GetScriptBlock>(Get-Date 01.01.1970).AddSeconds($this.modifiedTime)</GetScriptBlock>
+                <GetScriptBlock>if($this.modifiedTime){(Get-Date 01.01.1970).AddSeconds($this.modifiedTime)}</GetScriptBlock>
             </ScriptProperty>
             <ScriptProperty>
                 <Name>lastLoginDate</Name>
