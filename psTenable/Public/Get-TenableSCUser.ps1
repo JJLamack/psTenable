@@ -37,6 +37,12 @@ function Get-TenableSCUser {
         $PSType = "TenableSCUser"
     }
     process {
+
+        # Wildcard to return all properties of an endpoint
+        if ("*" -eq $Properties) {
+            $Properties = Get-ArgCompleter -FunctionName $MyInvocation.MyCommand
+        }
+
         if ($CurrentUser) {
             $result = Invoke-TenableSCMethod -Endpoint "currentUser" -Properties $Properties -PSType $PSType
         }

@@ -27,6 +27,12 @@ function Get-TenableSCLdap {
         $Endpoint = "ldap"
     }
     process {
+
+        # Wildcard to return all properties of an endpoint
+        if ("*" -eq $Properties) {
+            $Properties = Get-ArgCompleter -FunctionName $MyInvocation.MyCommand
+        }
+
         $result = Get-TenableSC -Resource $Endpoint -Properties $Properties -Key $Ldap
         return $result
     }

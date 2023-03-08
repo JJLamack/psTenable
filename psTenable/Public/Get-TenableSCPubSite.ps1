@@ -27,6 +27,12 @@ function Get-TenableSCPubSite {
         $Endpoint = "pubSite"
     }
     process {
+
+        # Wildcard to return all properties of an endpoint
+        if ("*" -eq $Properties) {
+            $Properties = Get-ArgCompleter -FunctionName $MyInvocation.MyCommand
+        }
+
         $result = Get-TenableSC -Resource $Endpoint -Properties $Properties -Key $PubSite
         return $result
     }

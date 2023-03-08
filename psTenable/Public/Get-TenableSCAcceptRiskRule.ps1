@@ -57,6 +57,11 @@ function Get-TenableSCAcceptRiskRule {
     }
     process {
 
+        # Wildcard to return all properties of an endpoint
+        if ("*" -eq $Properties) {
+            $Properties = Get-ArgCompleter -FunctionName $MyInvocation.MyCommand
+        }
+
         # If query is for specific Accepted Risk Rule then don't use filters
         if ($PSBoundParameters.ContainsKey('AcceptRiskRule')) {
             if ($AcceptRiskRule.id) {

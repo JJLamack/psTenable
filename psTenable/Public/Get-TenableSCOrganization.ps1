@@ -34,6 +34,12 @@ function Get-TenableSCOrganization {
         $Endpoint = "organization"
     }
     process {
+
+        # Wildcard to return all properties of an endpoint
+        if ("*" -eq $Properties) {
+            $Properties = Get-ArgCompleter -FunctionName $MyInvocation.MyCommand
+        }
+
         if ($CurrentOrganization) {
             $result = Invoke-TenableSCMethod -Endpoint "currentOrganization"
         }

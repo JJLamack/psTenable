@@ -24,6 +24,12 @@ function Get-TenableSCRepository {
         $PSType = "TenableSCRepository"
     }
     process {
+
+        # Wildcard to return all properties of an endpoint
+        if ("*" -eq $Properties) {
+            $Properties = Get-ArgCompleter -FunctionName $MyInvocation.MyCommand
+        }
+
         if ($Repository) {
             $result = Get-TenableSC -Resource $Endpoint -Key $Repository -Properties $Properties
         }

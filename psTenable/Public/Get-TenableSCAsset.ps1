@@ -59,6 +59,11 @@ function Get-TenableSCAsset {
     }
     process {
 
+        # Wildcard to return all properties of an endpoint
+        if ("*" -eq $Properties) {
+            $Properties = Get-ArgCompleter -FunctionName $MyInvocation.MyCommand
+        }
+
         if ($Asset) {
             if ($Asset.id) {
                 $Asset = $Asset.id
