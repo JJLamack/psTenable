@@ -38,6 +38,14 @@ function Get-TenableSC {
     # make sure first letter is uppercases for Type binding
     $PSType = "TenableSC" + $Resource.substring(0, 1).toupper() + $Resource.substring(1)
 
+    # Wildcard to return all properties of an endpoint
+    if ("*" -eq $Properties) {
+        $FcnName = "Get-$PSType"
+        # Validate Function is in Module
+        
+        $Properties = Get-ArgCompleter -FunctionName $FcnName
+    }
+
     if (-not $PSBoundParameters.ContainsKey('Key')) {
         Invoke-TenableSCMethod -PSType $PSType -Endpoint $Endpoint
     }
